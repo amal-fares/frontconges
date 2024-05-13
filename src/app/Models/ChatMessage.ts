@@ -1,3 +1,4 @@
+import {Chatroom} from "./Chatroom";
 
 export class ChatMessage {
   text!: string;
@@ -5,4 +6,5 @@ export class ChatMessage {
   avatar!: string;
   idchat?: string;
   sender!: number;
+
 }

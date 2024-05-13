@@ -8,4 +8,5 @@ export class Chatroom {
   public messages!: ChatMessage[];
  public  color: string = "bleu";
   demandeConge!: Demande_conges;
+
 }

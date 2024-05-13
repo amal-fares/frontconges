@@ -45,7 +45,7 @@ export class ForumserviceService {
       that.stompClient.subscribe("/topic/messages", (message: { body: string; }) => {
         if (message.body) {
           let obj = JSON.parse(message.body);
-          that.addMessage(obj.text, obj.username, obj.avatar , obj.sender, obj.chatid );
+          that.addMessage(obj.text, obj.username, obj.avatar , obj.chatid, obj.sender );
         }
       });
 
@@ -57,14 +57,14 @@ export class ForumserviceService {
   }
 
   // Prepare and push the chat messages into the messages array
-  addMessage(message: any, username: string, avatar: string , chatroom: Chatroom , sender: string) {
+  addMessage(message: any, username: string, avatar: string , chatid: string , sender: string) {
     this.messages.push({
       text: message,
       date: new Date(),
       Personnel : {
         username: username
       },
-      chatid: chatroom,
+      chatid: chatid,
       sender: sender
 
 

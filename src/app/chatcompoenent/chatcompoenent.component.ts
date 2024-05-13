@@ -54,7 +54,7 @@ list!:Demande_conges[];
       console.log(this.currentuser.cin);
 
     });
-    console.log( 'currentuser' ,this.currentuser);
+    console.log(this.currentuser);
 
 
 this.userservice.chatmessagelist;
@@ -93,8 +93,8 @@ this.userservice.chatmessagelist;
 
     // Si l'utilisateur envoie une image
 
-      // Si l'utilisateur envoie un message texte, envoyer simplement le message au service de chat
-      this.Chatservice.sendMessage(obj);
+    // Si l'utilisateur envoie un message texte, envoyer simplement le message au service de chat
+    this.Chatservice.sendMessage(obj);
 
   }
 
