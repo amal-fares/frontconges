@@ -1,0 +1,9 @@
+<mat-drawer-container class="example-container" [hasBackdrop]="'false'">
+  <mat-drawer #drawer [mode]="'side'">test 1
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+    <button   class="bi bi-card-list amal " mat-raised-button (click)="drawer.toggle()"></button>
+  </mat-drawer-content>
+</mat-drawer-container>
+

@@ -1,0 +1,58 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<ul class="wrapper">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar">
+    <div class="sidebar-header">
+      <h3>Mes Congés</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+      <p  (click)="toggledown()"  class="bi bi-caret-down-fill"  >Mes soldes</p>
+      <ul   [ngClass]="{ 'collapse': !isdown }" class="collapse">
+        <li style="margin-top: 10px;font-family:Merriweather; padding-left: 30px;  "> Nombre de jours total :   22j</li>
+        <li style="margin-top: 10px;font-family:Merriweather; padding-left: 30px;  " >Reste à poser: {{user.solde_conges}}j </li>
+      </ul>
+      <li class="active">
+        <p  (click)="toggleDropdown()"  (click)="sauvegarderTypeConge(TypeConge.exceptionnel)" data-toggle="collapse" class="bi bi-caret-down-fill"> Conges Exceptionnels</p>
+        <ul  style="font-family:Montserrat" [ngClass]="{ 'collapse': !isDropdownOpen }" class="collapse " id="homeSubmenu">
+
+          <li  (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongePaternite)" style="margin-top: 10px;font-family:Merriweather; padding-left: 30px; ">Congé paternité</li>
+          <li  (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongeMaternite)"style="margin-top: 10px;font-family:Merriweather; padding-left: 30px;">Congé maternité</li>
+          <li (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongeSabbatique)"style="margin-top: 10px;font-family:Merriweather;  padding-left: 30px;">Congé sabbatique</li>
+          <li (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongeDemariage)" style="margin-top: 10px;font-family:Merriweather; padding-left: 30px;">Congé  de mariage</li>
+          <li  (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongeDeDemangement)" style="margin-top: 10px;font-family:Merriweather;padding-left: 30px;">Congé  de Démangement</li>
+          <li  (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongeEnfantMalade)"style="margin-top: 10px;font-family:Merriweather; padding-left: 30px;">Congé  Enfant malade</li>
+          <li  (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongeEnCasDeDeces)"style="margin-top: 10px;font-family:Merriweather;padding-left: 30px;">Congé  en cas de décès</li>
+          <li  (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongePourCauseDeCatastropheNaturelle)" style="margin-top: 10px;font-family:Merriweather; padding-left: 30px;">Congé pour cause de catastrophe naturelle</li>
+          <li (click)="sauvegarderTypeCongeexc(Type_conge_exceptionnel.CongePourServiceMilitaireOuCivil)"  style="margin-top: 10px;font-family:Merriweather; padding-left: 30px;">Congé pour service militaire ou civil</li>
+
+        </ul>
+      </li>
+      <li>
+
+        <p (click)="toggleDrpdown()"  (click)="sauvegarderTypeConge(TypeConge.regulier)"data-toggle="collapse" class="bi bi-caret-down-fill">Congés Réguliers</p>
+       <ul [ngClass]="{ 'collapse': !ismenu }" class="collapse" >
+        <li> Vous avez {{user.solde_conges}}  jours à poser  </li>
+</ul >
+
+
+
+
+    </ul>
+
+
+  </nav>
+
+  <!-- Page Content Holder -->
+
+</ul>
+<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<!-- Bootstrap Js CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+<app-calendar></app-calendar>

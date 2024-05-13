@@ -1,0 +1,6 @@
+<p>confirmer works!</p>
+<h1>Confirmer Votre Demande de Congé</h1>
+<div>Date de début:  {{ request.date_debut | date }}</div>
+<div>Date de fin: {{ request.date_fin | date }}</div>
+<div>Type de Congé: {{ request.type_conge_exceptionnel }}</div>
+<button mat-button (click)="confirmer()">Envoyer Demande</button>

@@ -1,0 +1,41 @@
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: white;
+  background-size: cover;
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #ee7724, #8d4b4c, #dd3675, #b44593);
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+.gradient-form {
+  height: 100% !important;
+  background-size: cover; /* Assure que l'arrière-plan couvre toute la hauteur de la section */
+}
+
+@media (min-width: 10px) {
+  .gradient-form {
+    height: 100vh !important;
+    background-size: cover;
+  }
+}
+@media (min-width: 769px) {
+  .gradient-custom-2 {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    background-size: cover;
+  }
+  .gradient-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gradient-form .container  form  .card rounded-3{
+    padding-top: 0px; /* Ajustez la valeur en fonction de la quantité de décalage souhaitée */
+  }
+
+  .gradient-form .col-lg-6  form .card rounded-3{
+    margin-top: 0px; /* Ajustez la valeur en fonction de la quantité de décalage souhaitée */
+  }
+}

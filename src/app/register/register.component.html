@@ -1,0 +1,81 @@
+<section class="h-100 gradient-form" style="background-color: #eee;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0">
+            <div class="col-lg-6">
+              <div class="card-body p-md-5 mx-md-4">
+
+                <div class="text-center">
+                  <img src="../../../assets/sopra.png"
+                       style="width: 185px;" alt="logo">
+
+                </div>
+
+                <form>
+                  <p>Faites votre inscription </p>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+
+
+                    <input type="text" class="form-control "  [(ngModel)]="authRequest.nom"   name="Nom " placeholder="Nom " ><i class="bi bi-person"></i>
+                    <label class="form-label" ></label>
+                  </div>
+
+                  <div data-mdb-input-init class="form-outline mb-4">
+
+
+                    <input type="text" class="form-control "  [(ngModel)]="authRequest.prenom"   name="Prenom " placeholder="Prenom" >
+                    <label class="form-label"></label>
+                  </div>
+
+
+
+
+                    <div class="text-center">
+                      <button (click)="register()" type="button" class="btn bg-gradient-dark w-100 mt-3 mb-0">Sign in</button>
+                    </div>
+
+
+
+
+                </form>
+
+              </div>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+              <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                <div data-mdb-input-init class="form-outline mb-4">
+
+
+                  <input type="text" class="form-control "  [(ngModel)]="authRequest.username"    name="username" placeholder="Username" >
+                  <label class="form-label" ></label>
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">
+
+
+                  <input type="text" class="form-control " [(ngModel)]="authRequest.email"   name="Email" placeholder="Email" >
+                  <label class="form-label" ></label>
+                </div>
+
+                <div data-mdb-input-init class="form-outline mb-4">
+
+
+                  <input type="text" class="form-control "  [(ngModel)]="authRequest.role"    name="Role" placeholder="Role" >
+                  <label class="form-label" ></label>
+                </div>
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input type="password" id="form2Example22"class="form-control" id="password"  name="password" placeholder="Password">
+
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-
+  </div>
+  </div>
+</section>
+
