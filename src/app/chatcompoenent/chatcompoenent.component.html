@@ -6,7 +6,7 @@
 
 
   <!-- Page header end -->
-
+<body>
   <!-- Content wrapper start -->
   <div class="content-wrapper">
 
@@ -36,7 +36,10 @@
                     <div class="chat-avatar">
                       <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
                       <div class="chat-name">{{aa.username}}</div>
-                      <div class="chat-text">{{aa.text}}</div>
+                      <div class="chat-text" *ngIf="aa.text!= null && aa.text.startsWith('$IMG$')">
+                        <img [src]="sanitizer.bypassSecurityTrustResourceUrl(aa.text.substr(5))"/>
+                      </div>
+                      <div class="chat-text" *ngIf="!(aa.text!= null && aa.text.startsWith('$IMG$'))">{{aa.text}}</div>
                     </div>
 
 
@@ -47,7 +50,10 @@
                     <div class="chat-avatar">
                       <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
                       <div class="chat-name">{{aa.username}}</div>
-                      <div class="chat-text">{{aa.text}}</div>
+                      <div class="chat-text" *ngIf="aa.text!= null && aa.text.startsWith('$IMG$')">
+                        <img [src]="sanitizer.bypassSecurityTrustResourceUrl(aa.text.substr(5))"/>
+                      </div>
+                      <div class="chat-text" *ngIf="!(aa.text!= null && aa.text.startsWith('$IMG$'))">{{aa.text}}</div>
                     </div>
                     </div>
                   </li>
@@ -68,7 +74,10 @@
                     <div class="chat-avatar">
                       <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
                       <div class="chat-name">{{message.username}}</div>
-                      <div class="chat-text">{{message.text}}</div>
+                      <div class="chat-text" *ngIf="message.text.startsWith('$IMG$')">
+                        <img [src]="sanitizer.bypassSecurityTrustResourceUrl(message.text.substr(5))"/>
+                      </div>
+                      <div class="chat-text" *ngIf="!message.text.startsWith('$IMG$')">{{message.text}}</div>
                     </div>
 
 
@@ -79,7 +88,10 @@
                       <div class="chat-avatar">
                         <img src="https://www.bootdey.com/img/Content/avatar/avatar3.png" alt="Retail Admin">
                         <div class="chat-name">{{message.username}}</div>
-                        <div class="chat-text">{{message.text}}</div>
+                        <div class="chat-text"   *ngIf="message.text.startsWith('$IMG$')">
+                          <img  [src]="sanitizer.bypassSecurityTrustResourceUrl(message.text.substr(5))"/>
+                        </div>
+                        <div class="chat-text" *ngIf="!message.text.startsWith('$IMG$')">{{message.text}}</div>
                       </div>
                     </div>
                   </li>
@@ -99,16 +111,25 @@
 
     </div>
     <!-- Row end -->
-    <div class="input-group input-group-outline d-flex">
-      <label class="form-label">Type your message</label>
+
+
+    <div class="input-group input-group-outline d-flex" style="background-color: white">
+
+      <input type="file" class="file-upload" name="image"    (change)="onFileSelcted($event)">
       <input  name="body" [(ngModel)]="messages" type="text" class="form-control form-control-lg">
       <button   (click)="sendMessage($event, avatar)"  class="btn bg mb-0" >
         <i class="material-icons">send</i>
       </button>
     </div>
+    </div>
+</body>
   </div>
   <!-- Content wrapper end -->
 
 
 
-</div>
+
+
+
+
+

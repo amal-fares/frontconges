@@ -1,9 +1,187 @@
 .container {
-  position:absolute ;
-  top:20px;
-  right:250px;
-  left:100px;
+  max-width: 99%;
+  margin-left: 0;
+  margin-right:50%;
+  padding-left: 0px;
+  padding-right: 50%;
+  display: flex;
+  top:60px;
+  flex-direction: column;
+  position: relative;
 
+
+}
+
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.responsive-table {
+ position: absolute;
+  top:60px;
+  width: calc(92% - 99px);/* Prend 70% de la largeur de la page */
+  float: right ; /* Pour aligner à gauche */
+  transform: translateX(0.1%);
+  right:0;
+  margin-right: 0;
+}
+
+.responsive-table li {
+  border-radius: 3px;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+
+}
+.retard {
+  position: fixed ; /* Position fixe */
+  top: 80px; /* Aligner le haut de l'élément avec le haut de la fenêtre */
+  left: 0; /* Coller à la bordure gauche de la fenêtre */
+  width: 500px; /* Largeur automatique */
+  margin: 0; /* Pas de marge */
+  padding: 0; /* Pas de remplissage */
+  list-style: none; /* Supprimer les puces de liste */
   height:100%;
-  background:white ;
+}
+
+.soumetteur2{
+  right:300px;
+}
+.table-header {
+  background: #A5A4A4
+;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  display: flex;
+}
+
+.table-row {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+}
+
+.table-row .col {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.table-row .col[data-label="Date début et date fin de la demande"] {
+  flex-direction: column;
+}
+
+.motif, .soumetteur, .date, .actions {
+  flex: 1;
+
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: -2px;/* Aligner à droite */
+}
+
+.pagination-tem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+.button-53 {
+  background:  #A5A4A4;
+  border: 0 solid #E5E7EB;
+  color: #000000;
+  display: flex;
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 0.50rem; /* Reduced font size */
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1rem; /* Adjusted line-height */
+  padding: 0.25rem 0.5rem; /* Reduced padding */
+  max-width: 200px; /* Reduced max-width */
+  cursor: pointer;
+  transform: rotate(-2deg);
+  margin-bottom: 5px; /* Space between buttons */
+  margin-left: 60px; /* Center the button horizontally */
+  /* Center the button horizontally */
+}
+
+.button-53:focus {
+  outline: 0;
+}
+
+.button-53:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.button-53:hover:after {
+  bottom: 2px;
+  left: 2px;
+
+}
+
+@media (min-width: 768px) {
+  .button-53 {
+    padding: 0.25rem 1rem; /* Adjusted padding for larger screens */
+    font-size: 0.50rem; /* Adjusted font-size for larger screens */
+  }
+}
+
+.button_chat {
+  width:59px /* Center the buttons horizontally */
+}
+
+.dates {
+  margin-left: 2px;
+  font-family: 'Brush Script MT', cursive;
+  font-size: 15px;
+  color: darkred;
+}
+
+.date {
+  margin-left: 0;
+}
+.column-70 {
+  flex: 0 0 70%; /* 70% de largeur */
+}
+
+.column-30 {
+  flex: 0 0 30%; /* 30% de largeur */
+  margin-left: auto; /* Pour pousser vers la droite */
+}
+
+
+.info-window {
+  display: none;
+  position: absolute;
+  background-color: white ;
+  color: purple;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1;
+  width: 200px;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+
+.info-window.show {
+  display: block;
+  opacity: 1;
 }

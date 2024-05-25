@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserserviceService} from "../userservice/userservice.service";
-import {Demande_conges} from "../Models/Demande_conges";
+import {Demande_conge} from "../Models/Demande_conge";
 
 @Component({
   selector: 'app-validprem',
@@ -8,7 +8,7 @@ import {Demande_conges} from "../Models/Demande_conges";
   styleUrls: ['./validprem.component.css']
 })
 export class ValidpremComponent implements OnInit{
-  listdemandconges!:Demande_conges[];
+  listdemandconges!:Demande_conge[];
   constructor(public userservice:UserserviceService){}
 
   ngOnInit(): void {

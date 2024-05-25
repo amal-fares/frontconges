@@ -1,0 +1,8 @@
+<div> Votre demande necessite un justificatif .Vous pouvez joindre votre justifictaif en cliquant ci dessous .Sinon vous pouvez le joindre utlérieurement </div>
+<input type="file" class="file-upload" name="image" required [(ngModel)]="Image" #image="ngModel"   (change)="onFileSelcted($event)">
+<button type="button" class="btn bg-gradient-primary mb-0"  (click)="addImage()">Submit</button>
+<a class="d-block blur-shadow-image">
+  <img src="{{Image.imagenUrl}}"  class="img-fluid shadow border-radius-lg" loading="lazy" style="height: 400px; width: 500px;">
+
+</a>
+<button type="text" (click)="joindreJustificatifUlterieurement()">Joindre le justficatif ultérieurement </button>

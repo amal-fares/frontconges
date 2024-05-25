@@ -1,7 +1,7 @@
 import {Role} from "./Role";
 import {StatausEmploi} from "./StatausEmploi";
 import {Messags} from "./Messags";
-import {Demande_conges} from "./Demande_conges";
+import {Demande_conge} from "./Demande_conge";
 
 export class Personnel  {
 
@@ -26,7 +26,7 @@ export class Personnel  {
   manager!: Personnel;
   managerdeuxiemeniveau!: Personnel;
   gestionnaire!: Personnel;
-  demande_congeList !: Demande_conges[];
+  demande_congeList !: Demande_conge[];
   listmes!: Messags[];
   listemessagesender!: Messags[];
 }

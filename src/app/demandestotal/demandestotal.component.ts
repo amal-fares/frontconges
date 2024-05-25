@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {Demande_conges} from "../Models/Demande_conges";
+import {Demande_conge} from "../Models/Demande_conge";
 import {UserserviceService} from "../userservice/userservice.service";
 import {Router} from "@angular/router";
 import {Chatroom} from "../Models/Chatroom";
 import {ChatcompoenentComponent} from "../chatcompoenent/chatcompoenent.component";
 import {MatDialog} from "@angular/material/dialog";
 import {Personnel} from "../Models/Personnel";
+import {SharedserviceService} from "../sharedservie/sharedservice.service";
+import {Type_Conge} from "../Models/Type_Conge";
 
 @Component({
   selector: 'app-demandestotal',
@@ -13,7 +15,7 @@ import {Personnel} from "../Models/Personnel";
   styleUrls: ['./demandestotal.component.css']
 })
 export class DemandestotalComponent  implements OnInit {
-  listdemandconges!:Demande_conges[];
+  listdemandconges!:Demande_conge[];
   taskResult!: Date ;
   decision!:boolean;
   idpersonnel!:number;
@@ -21,18 +23,43 @@ export class DemandestotalComponent  implements OnInit {
   map2: Map<number, string> = new Map();
   map3: Map<number, string> = new Map();
   ch: Chatroom = new Chatroom();
+  isTableVisible1: boolean = false;
   username!:string;
   currentuser:Personnel = new Personnel();
-  constructor(private Userservice:UserserviceService, private chatcompoenent : ChatcompoenentComponent,private router:Router,private dialog:MatDialog ) {
+  deadline!:Date;
+  deadlines: { [key: number]: Date } = {};
+  Demande_conge_en_retard!:Demande_conge[];
+  p: number = 1;
+  listdemandesanterieres!:String[];
+  detailsWindowVisible: boolean[] = [];
+  constructor(private Userservice:UserserviceService, private chatcompoenent : ChatcompoenentComponent,private router:Router,private dialog:MatDialog,public sharedservice:SharedserviceService ) {
   }
   ngOnInit(): void {
-    this.Userservice.getalldem().subscribe({
-      next: (data:any ) => {
+    const username = localStorage.getItem("currentUser");
+    if (username) {
+      this.Userservice.getUserUsername(username).subscribe(data => {
+        this.currentuser = data;
+        console.log(data);
+
+        localStorage.setItem('gestionnaireidd', this.currentuser.cin.toString());
+    console.log("gestionnaire", this.currentuser.gestionnaire.cin);
+      });
+
+      this.Userservice.gettypecongesexep(Type_Conge.regulier).subscribe({
+      next: (data: any) => {
         this.listdemandconges = data;
         console.log(this.listdemandconges); // Déplacer ici
+        this.detailsWindowVisible = new Array(this.listdemandconges.length).fill(false);
+
+        this.listdemandconges.forEach(demande => {
+          this.Userservice.getdeadline(demande.id_demandeconge).subscribe(deadline => {
+            this.deadlines[demande.id_demandeconge] = deadline;
+          });
+        });
       }
     });
-  }
+
+  }}
   taskcompletion(){
     this.Userservice.taskcompletion().subscribe(
       result => {
@@ -57,7 +84,8 @@ export class DemandestotalComponent  implements OnInit {
         this.currentuser = data;
         console.log(data);
         console.log(this.currentuser.cin);
-        console.log("cingest", this.currentuser.gestionnaire.cin);
+
+
         this.chatcompoenent.ref(this.currentuser.cin, demandecollid, data.username, 'null', iddemande);
         console.log("here");
         console.log(this.currentuser);
@@ -114,7 +142,30 @@ export class DemandestotalComponent  implements OnInit {
 
   }
 
+  isDeadlineProche(dateLimite: Date): boolean {
+    const AUJOURDHUI = new Date();
+    const limite = new Date(dateLimite);
+    const troisJoursPlusTard = new Date(AUJOURDHUI.getTime() + (3 * 24 * 60 * 60 * 1000)); // Calcul de la date dans 3 jours
 
+    // Vérifier si la date de la deadline est dans les 3 jours à venir
+    if( limite.getTime() <= troisJoursPlusTard.getTime()&& limite.getTime() >= AUJOURDHUI.getTime()){
+      return true ;
+      this.sharedservice.nombreDemandesTroisProchainsJours++;
 
+    }
+    return false ;
+  }
+detailsdemandes(iduser:any){
+    this.Userservice.detailsdemandesantierieures(iduser).subscribe((data:any)=>{
+      this.listdemandesanterieres=data;
+      console.log("demandes anterieures",this.listdemandesanterieres);
+  })
+
+}
+  toggleDetails(iduser: any, index: number): void {
+    this.detailsdemandes(iduser);
+    this.detailsWindowVisible = this.detailsWindowVisible.map((_, i) => i === index ? !this.detailsWindowVisible[i] : false);
+  }
+  protected readonly Type_Conge = Type_Conge;
 }
 

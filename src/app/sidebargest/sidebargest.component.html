@@ -1,0 +1,67 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  #333; width:200px; margin-top: -20px; ">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a href="javascript:;" class="nav-link">
+        <div class="nav-profile-image">
+
+
+        </div>
+        <div class="nav-profile-text">
+          <span  class="font-weight-bold mb-2" style="color:white;" >{{currentUser.prenom}}</span>
+          <span class="text-secondary text-small" style="color:white;">Gestionnaire </span>
+        </div>
+
+      </a>
+    </li>
+    <li class="nav-item nav-item-logout " [ngClass]="{ 'active': dashboard.isActive }">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
+        <span class="menu-title" style="height:60px; left:1px; margin-top: 30px;color:white;" >Accueil </span>
+        <i class="mdi mdi-home menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item nav-item-logout" [ngClass]="{'active' : accordions.isActive || buttons.isActive || badges.isActive || breadcrumbs.isActive || dropdowns.isActive || modals.isActive || notifications.isActive || progressbar.isActive || pagination.isActive || tabs.isActive || typography.isActive || tooltips.isActive }">
+      <a class="nav-link"   aria-controls="ui-basic">
+        <span class="menu-title menu-text-wide " style=" height:60px; color:white;">Mon Espace </span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+      </a>
+      <div class="collapse" id="ui-basic" >
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/accordions" routerLinkActive="active" #accordions="routerLinkActive">Accordions</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/buttons" routerLinkActive="active" #buttons="routerLinkActive">Buttons</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/badges" routerLinkActive="active" #badges="routerLinkActive">Badges</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/breadcrumbs" routerLinkActive="active" #breadcrumbs="routerLinkActive">Breadcrumbs</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/dropdowns" routerLinkActive="active" #dropdowns="routerLinkActive">Dropdowns</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/modals" routerLinkActive="active" #modals="routerLinkActive">Modals</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/notifications" routerLinkActive="active" #notifications="routerLinkActive">Notifications</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/progressbar" routerLinkActive="active" #progressbar="routerLinkActive">Progress bar</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/pagination" routerLinkActive="active" #pagination="routerLinkActive">Pagination</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tabs" routerLinkActive="active" #tabs="routerLinkActive">Tabs</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/typography" routerLinkActive="active" #typography="routerLinkActive">Typography</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tooltips" routerLinkActive="active" #tooltips="routerLinkActive">Tooltips</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item nav-item-logout" [ngClass]="{ 'active': forms.isActive }">
+      <a class="nav-link" routerLink="forms/basic-elements" routerLinkActive #forms="routerLinkActive">
+        <span class="menu-title"style="height:60px; color:white;">Documents </span>
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item nav-item-logout" [ngClass]="{ 'active': charts.isActive }">
+      <a class="nav-link" routerLink="charts/chartjs" routerLinkActive #charts="routerLinkActive">
+        <span class="menu-title" style="height:60px; color:white;">A Propos </span>
+        <i class="mdi mdi-chart-bar menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item nav-item-logout" [ngClass]="{ 'active': tables.isActive }">
+      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
+        <span class="menu-title" style="height:60px; color:white;">Déconnexion </span>
+        <i class="mdi mdi-table-large menu-icon"></i>
+      </a>
+    </li>
+
+
+
+  </ul>
+</nav>

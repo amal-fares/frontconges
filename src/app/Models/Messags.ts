@@ -1,4 +1,4 @@
-import {Demande_conges} from "./Demande_conges";
+import {Demande_conge} from "./Demande_conge";
 import {Personnel} from "./Personnel";
 
 export class Messags {
@@ -7,7 +7,7 @@ export class Messags {
   contenu!: string;
   receiver!: Personnel;
   sender!: Personnel;
-  demandeCongemes!: Demande_conges;
+  demandeCongemes!: Demande_conge;
 
 }
 

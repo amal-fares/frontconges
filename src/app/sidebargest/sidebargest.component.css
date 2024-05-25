@@ -1,0 +1,368 @@
+/* Variables */
+:root {
+  --navbar-height: 60px;
+  --sidebar-bg: #ffffff;
+  --type1-regular: Arial, sans-serif;
+  --sidebar-width-lg: 250px;
+  --action-transition-duration: 0.3s;
+  --action-transition-timing-function: ease-out;
+  --sidebar-menu-padding-x: 15px;
+  --sidebar-menu-padding-y: 0px;
+  --sidebar-menu-color: #333333;
+  --sidebar-menu-icon-color: #777777;
+  --sidebar-menu-arrow-color: #999999;
+}
+
+/* CSS Output */
+.sidebar {
+
+  background: var(--sidebar-bg);
+  font-family: var(--type1-regular);
+  padding: 0;
+  width: var(--sidebar-width-lg);
+  z-index: 11;
+  transition: width var(--action-transition-duration) var(--action-transition-timing-function),
+  background var(--action-transition-duration) var(--action-transition-timing-function);
+  height: 100%;
+}
+
+.sidebar .nav {
+  overflow: hidden;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.sidebar .nav:not(.sub-menu) {
+  padding-bottom: 60px;
+}
+
+.sidebar .nav .nav-item {
+  padding: 0 var(--sidebar-menu-padding-x);
+  transition-duration: 0.25s;
+  transition-property: background;
+}
+
+.sidebar .nav .nav-item .nav-link {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: var(--sidebar-menu-padding-y) 0 var(--sidebar-menu-padding-y) 0;
+  color: var(--sidebar-menu-color);
+  transition-duration: 0.45s;
+  transition-property: color;
+  cursor: pointer;
+}
+
+.sidebar .nav .nav-item .nav-link i {
+  color: inherit;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-icon {
+
+  line-height: 1;
+  margin-left: auto;
+  color: var(--sidebar-menu-icon-color);
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-icon.rtl {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-arrow {
+  font: normal normal normal 24px/1 "Material Design Icons";
+
+  line-height: 1;
+  margin-left: auto;
+  color: var(--sidebar-menu-arrow-color);
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-arrow.rtl {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-arrow:before {
+  content: "\f0141";
+  font-size: inherit;
+  color: inherit;
+  vertical-align: middle;
+}
+
+.sidebar .nav .nav-item .nav-link i.menu-arrow + .menu-icon {
+  margin-left: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Add more styles as needed */
+
+
+.menu-title {
+  color: inherit;
+  display: inline-block;
+  font-size: 16px; /* Remplacez par votre taille de police */
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.badge {
+  margin-right: auto;
+  margin-left: 1rem;
+}
+
+/* Styles pour les éléments avec aria-expanded="true" */
+[aria-expanded="true"] .menu-arrow:before {
+  content: "\F0140"; /* Remplacez par le contenu réel de votre choix */
+}
+
+/* Styles pour les éléments avec la classe .active */
+.menu-item.active .nav-link .menu-title {
+  color: #007bff; /* Couleur active pour le texte */
+  font-family: Arial, sans-serif; /* Police spécifique */
+}
+
+.menu-item.active .nav-link i {
+  color: white; /* Couleur active pour l'icône */
+}
+
+/* Styles pour les éléments au survol */
+.menu-item:hover {
+  background-color: navajowhite; /* Couleur de fond au survol */
+}
+
+/* Styles spécifiques pour les éléments avec la classe .nav-profile */
+.nav-profile .nav-link {
+  height: auto;
+  line-height: 1;
+  border-top: 0;
+  padding: 1.25rem 0;
+}
+
+.nav-profile .nav-link .nav-profile-image {
+  width: 44px;
+  height: 44px;
+}
+
+.nav-profile .nav-link .nav-profile-image img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%; /* Bordure arrondie pour l'image */
+}
+
+:root {
+  --sidebar-menu-hover-color: #your-color-here;
+  --sidebar-submenu-color: #your-color-here;
+  --sidebar-submenu-item-padding: 10px; /* example padding */
+  --sidebar-submenu-font-size: 14px; /* example font size */
+  --sidebar-menu-active-color: #your-color-here;
+  --sidebar-submenu-hover-color: #your-color-here;
+}
+
+.nav-profile-text {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+.rtl .nav-profile-text {
+  margin-left: auto;
+  margin-right: 1rem;
+}
+.nav-profile-badge {
+  font-size: 1.125rem;
+  margin-left: auto;
+}
+.rtl .nav-profile-badge {
+  margin-left: 0;
+  margin-right: auto;
+}
+.sidebar-actions {
+  margin-top: 1rem;
+}
+.sidebar-actions .nav-link {
+  border-top: 0;
+  display: block;
+  height: auto;
+}
+.sidebar-actions:hover {
+  background: initial;
+}
+.sidebar-actions:hover .nav-link {
+  color: initial;
+}
+.nav-item:not(.sub-menu):hover > .nav-link {
+  color: var(--sidebar-menu-hover-color);
+}
+.sub-menu {
+  margin-bottom: 20px;
+  margin-top: 0;
+  list-style: none;
+}
+.sub-menu .nav-item {
+  padding: 0;
+}
+.sub-menu .nav-item .nav-link {
+  color: var(--sidebar-submenu-color);
+  padding: var(--sidebar-submenu-item-padding);
+  position: relative;
+  font-size: var(--sidebar-submenu-font-size);
+  line-height: 1;
+  height: auto;
+  border-top: 0;
+}
+.sub-menu .nav-item .nav-link:before {
+  content: "\F054";
+  font-family: "Material Design Icons";
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  font-size: .75rem;
+}
+.rtl .sub-menu .nav-item .nav-link:before {
+  left: auto;
+  right: 0;
+}
+.sub-menu .nav-item .nav-link.active {
+  color: var(--sidebar-menu-active-color);
+  background: transparent;
+}
+.sub-menu .nav-item .nav-link:hover {
+  color: var(--sidebar-submenu-hover-color);
+}
+.sub-menu .nav-item:hover {
+  background: transparent;
+}
+
+
+
+@media (min-width: 992px) {
+  :host-context(.sidebar-icon-only) {
+    .sidebar {
+
+    }
+    .sidebar .nav {
+      overflow: visible;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .sidebar .nav .nav-item {
+      padding: 0 1rem;
+      position: relative;
+    }
+    .sidebar .nav .nav-item .nav-link {
+      display: block;
+      padding-left: .5rem;
+      padding-right: .5rem;
+      text-align: center;
+      position: static;
+    }
+    .sidebar .nav .nav-item .nav-link .menu-title,
+    .sidebar .nav .nav-item .nav-link .badge,
+    .sidebar .nav .nav-item .nav-link .menu-sub-title {
+      display: none;
+    }
+    .sidebar .nav .nav-item .nav-link .menu-title {
+
+      border-radius: 0 5px 5px 0;
+    }
+    .sidebar .nav .nav-item .nav-link i.menu-icon {
+      margin-right: 0;
+      margin-left: 0;
+      margin-bottom: 0;
+    }
+    .sidebar .nav .nav-item .nav-link i.menu-arrow {
+      display: none;
+    }
+    .sidebar .nav .nav-item .nav-link[aria-expanded] .menu-title {
+      border-radius: 0 5px 0 0;
+    }
+    .sidebar .nav .nav-item .collapse {
+      display: none;
+    }
+    .sidebar .nav .nav-item.hover-open .nav-link .menu-title {
+      display: flex;
+      align-items: center;
+
+      padding: 0.5rem 1.4rem;
+
+      position: absolute;
+      text-align: left;
+      top: 0;
+      bottom: 0;
+
+      z-index: 1;
+      line-height: 1.8;
+      box-shadow: 4px 0px 7px 0px rgba(182, 185, 189, 0.25);
+    }
+    .sidebar .nav .nav-item.hover-open .collapse,
+    .sidebar .nav .nav-item.hover-open .collapsing {
+      display: block;
+
+      border-radius: 0 0 5px 0;
+      position: absolute;
+
+      box-shadow: 4px 4px 7px 0px rgba(182, 185, 189, 0.25);
+    }
+    .sidebar .nav .nav-item.nav-profile {
+      padding: 0 .3rem;
+    }
+    .sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-text,
+    .sidebar .nav .nav-item.nav-profile .nav-link .nav-profile-badge {
+      display: none;
+    }
+    .sidebar .nav .nav-item:not(.sub-menu).active {
+      border-radius: 0;
+    }
+    .sidebar .nav .nav-item:not(.sub-menu):hover .nav-link {
+      border-radius: 0;
+    }
+    .sidebar .nav.sub-menu {
+      padding: 9px;
+    }
+    .sidebar .nav.sub-menu .nav-item .nav-link {
+      text-align: left;
+      padding-left: 20px;
+    }
+  }
+}
+
+.menu-text-wide {
+  white-space: nowrap; /* Empêche les sauts de ligne */
+  overflow: hidden;    /* Cache le texte débordant */
+  text-overflow: ellipsis; /* Ajoute des points de suspension pour le texte débordant */
+  width: 100%; /* Ajuste la largeur selon vos besoins */
+}
+
+
+@media screen and (max-width: 991px) {
+  .sidebar-offcanvas {
+    position: fixed;
+    max-height: calc(100vh - var(--navbar-height)); /* Assuming --navbar-height is defined elsewhere */
+    top: var(--navbar-height); /* Assuming --navbar-height is defined elsewhere */
+    bottom: 0;
+    overflow: auto;
+    right: calc(-1 * var(--sidebar-width-lg)); /* Assuming --sidebar-width-lg is defined elsewhere */
+    transition: all 0.25s ease-out;
+    -webkit-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+  }
+
+  .sidebar-offcanvas.active {
+    right: 0;
+  }
+}
+
+.nav-item-logout a.nav-link:hover {
+  background-color: #A5A4A4; /* Couleur de fond au survol */
+  color: wheat; /* Couleur du texte au survol */
+}
+
+.nav-item-logout a.nav-link:hover .menu-title {
+  color: wheat; /* Couleur du texte de l'élément span au survol */
+}
+
+.nav-item-logout a.nav-link:hover .menu-icon {
+  color: wheat; /* Couleur de l'icône au survol */
+}

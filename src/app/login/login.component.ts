@@ -72,7 +72,7 @@ console.log(data);
                   });
                   break;
                 }case ERole.Gestionnaire: {
-                  this.router.navigateByUrl("/home/totaldem").then(() => {
+                  this.router.navigateByUrl("/home/espacegestionnaire").then(() => {
                     window.location.reload();
                   });
                   break;

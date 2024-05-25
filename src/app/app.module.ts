@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -24,6 +24,12 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { ChatcompoenentComponent } from './chatcompoenent/chatcompoenent.component';
+import { JoindrejustifComponent } from './joindrejustif/joindrejustif.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RetardsComponent } from './retards/retards.component';
+import { NotifComponent } from './notif/notif.component';
+import { SidebargestComponent } from './sidebargest/sidebargest.component';
+import { EspacegestionnaireComponent } from './espacegestionnaire/espacegestionnaire.component';
 
 
 @NgModule({
@@ -43,6 +49,12 @@ import { ChatcompoenentComponent } from './chatcompoenent/chatcompoenent.compone
     DemandestotalComponent,
     ValidpremComponent,
     ChatcompoenentComponent,
+    JoindrejustifComponent,
+    NavbarComponent,
+    RetardsComponent,
+    NotifComponent,
+    SidebargestComponent,
+    EspacegestionnaireComponent,
 
   ],
   imports: [
@@ -55,9 +67,10 @@ import { ChatcompoenentComponent } from './chatcompoenent/chatcompoenent.compone
     MatDialogModule,
     MatSidenavModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxPaginationModule
   ],
-  providers: [ChatcompoenentComponent],
+  providers: [ChatcompoenentComponent ,DemandestotalComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

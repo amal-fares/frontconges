@@ -3,10 +3,13 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Personnel} from "../Models/Personnel";
 import {Demandcongerequest} from "../Models/Demandcongerequest";
-import {Demande_conges} from "../Models/Demande_conges";
+import {Demande_conge} from "../Models/Demande_conge";
 import {ERole} from "../Models/ERole";
 import {Chatroom} from "../Models/Chatroom";
 import {ChatMessage} from "../Models/ChatMessage";
+import {Image_justificatif} from "../Models/Image_justificatif";
+import {Type_Conge} from "../Models/Type_Conge";
+import {Type_conge_exceptionnel} from "../Models/Type_conge_exceptionnel";
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +49,7 @@ public getdemandecongesbyuser(iduser:number):Observable<any>{
   };
     return this.http.get<any>(`http://localhost:9088/cng/demandeconge/getdemandescongesuser/${iduser}`,httpOptions)
 }
- public remplirformulaireactivit(request:Demandcongerequest,iduserconnete:number ):Observable<Demande_conges>{
+ public remplirformulaireactivit(request:Demandcongerequest,iduserconnete:number ):Observable<Demande_conge>{
    const httpOptions = {
      headers: new HttpHeaders({
        'Content-Type': 'application/json',
@@ -64,7 +67,7 @@ public getdemandecongesbyuser(iduser:number):Observable<any>{
     };
     return this.http.get<any>(`http://localhost:9088/cng/demandeconge/getmessagebyhatroom/${idchatroom}`,httpOptions)
   }
-  public getalldem():Observable<Demande_conges[]>{
+  public getalldem():Observable<Demande_conge[]>{
 
     return this.http.get<any>(`http://localhost:9088/cng/demandeconge/getalldem`)
   }
@@ -142,7 +145,7 @@ public getvalideprem(){
   };
   return this.http.get(`http://localhost:9088/cng/demandeconge/getdemandevalidesprem`,httpOptions)
 }
-  public getchtaroombyid(chatroomid:number){
+  public getchtaroombyid(chatroomid:number):Observable<any >{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -151,6 +154,18 @@ public getvalideprem(){
     };
     return this.http.get(`http://localhost:9088/cng/demandeconge/getchtaroombyidch/${chatroomid}`,httpOptions)
   }
+  public putetatdemande(iddemande:number):Observable<any  >{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.put(`http://localhost:9088/cng/demandeconge/putsetatdemande/${iddemande}`,httpOptions)
+  }
+  loadJsonData(): Observable<any> {
+    return this.http.get<any>('../../../assets/frcalendrier.json')}
+
   public getdemabyid(iddem:number)  :Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
@@ -172,4 +187,132 @@ public getvalideprem(){
     };
     return this.http.post<any>(` http://localhost:9088/cng/demandeconge/addandassignimage/${iddemande}/${idchatroom}`, formData, httpOptions);
   }
+  addImagedem(iddemand: number, image: File,idchatroom: number): Observable<Image_justificatif> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    const formData = new FormData();
+    formData.append('image', image);
+    let url = `http://localhost:9088/cng/demandeconge/addandassignimage/${iddemand}/${idchatroom}`;
+
+    return this.http.post<any>(url,formData,httpOptions);
+  }
+  addImagedemwithoutcatroom(iddemand: number, image: File): Observable<Image_justificatif> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    const formData = new FormData();
+    formData.append('image', image);
+    let url = `http://localhost:9088/cng/demandeconge/addandassignwithoutchatroom/${iddemand}`;
+
+    return this.http.post<any>(url,formData,httpOptions);
+  }
+  public getdeadline(iddemande:number):Observable<Date> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<Date>(`http://localhost:9088/cng/demandeconge/deadlinedemande/${iddemande}`, httpOptions);
+  }
+  public getdeandecongeenretard():Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`http://localhost:9088/cng/demandeconge/enretard`, httpOptions);
+  }
+  public getnombretroisprohains():Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`http://localhost:9088/cng/demandeconge/troisprochainsjours`, httpOptions);
+  }
+public getbytypecconge(Typeconge:Type_Conge):Observable<any>{
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    })
+  };
+  return this.http.get<any>(`http://localhost:9088/cng/demandeconge/typedemandeconge/${Typeconge}`, httpOptions);
 }
+  public gettypecongeexcep(Typecongeexc:Type_conge_exceptionnel):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`ttp://localhost:9088/cng/demandeconge/typecongexcep/${Typecongeexc}`, httpOptions);
+  }
+  public getmap():Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(` http://localhost:9088/cng/demandeconge/gettypecongexeppresent`, httpOptions);
+  }
+  public gettypecongesexep(typeconge :Type_Conge):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(` http://localhost:9088/cng/demandeconge/listdemexep/${typeconge}`, httpOptions);
+  }
+  public miseajoursoldeconge(iduser:number ):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`http://localhost:9088/cng/demandeconge/soldeconges/${iduser}`, httpOptions);
+  }
+  public modifieretatdemande(iddemande:number):Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.put<any>(`http://localhost:9088/cng/demandeconge/modifierjustifetat/${iddemande}`, httpOptions);
+  }
+ public detailsdemandesantierieures(iduser:number ):Observable<any>{
+   const httpOptions = {
+     headers: new HttpHeaders({
+       'Content-Type': 'application/json',
+       'Authorization': `Bearer ${localStorage.getItem('token')}`
+     })
+   };
+   return this.http.get<any>(`http://localhost:9088/cng/demandeconge/verfificationdechevauchement/${iduser}`, httpOptions);
+ }
+ public validatedecision(): Observable<any>{
+   const httpOptions = {
+     headers: new HttpHeaders({
+       'Content-Type': 'application/json',
+       'Authorization': `Bearer ${localStorage.getItem('token')}`
+     })
+   };
+   return this.http.post<any>(`http://localhost:9088/cng/demandeconge/validatedecison`, httpOptions);
+
+ }
+}
+
+

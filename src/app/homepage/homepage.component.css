@@ -4,7 +4,12 @@
   height:100%;
   border:none;
 }
-
+.bi .bi-card-list .amal {
+  position: absolute;
+  top: 90px;
+  right: 10px;
+  z-index: 1050;
+}
 mat-drawer-content {
   flex: 1; /* Prend le reste de l'espace disponible */
   padding: 0;
@@ -14,4 +19,8 @@ mat-drawer-content {
 mat-drawer{
   background-color: rgba(255, 106, 106, 0.25);
   width:100px;
+  z-index: 1000;
+}
+body{
+  background: #F8F8F8;
 }

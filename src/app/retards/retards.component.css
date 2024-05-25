@@ -1,0 +1,161 @@
+.container {
+  max-width: 1000px;
+  margin-left: auto;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  display: flex;
+  top:60px;
+  flex-direction: column;
+  position: relative;
+
+}
+
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.responsive-table {
+  position: relative;
+  top:60px;
+  width: 78%;/* Prend 70% de la largeur de la page */
+  float: left ; /* Pour aligner à gauche */
+  margin: 0;
+  left:0;
+}
+.amal {
+  position: relative ; /* Position fixe */
+  top: 0; /* Aligner le haut de l'élément avec le haut de la fenêtre */
+  left: 0; /* Coller à la bordure gauche de la fenêtre */
+  width: 73%; /* Largeur automatique */
+  margin: 0; /* Pas de marge */
+  padding: 0; /* Pas de remplissage */
+  height:100%;/* Supprimer les puces de liste */
+}
+.nbr {
+  margin-right:94px;
+}
+.urgent{
+  margin-right: 99px;
+}
+.clear-both {
+  clear: both;
+
+}
+
+
+
+
+
+.soumetteur2{
+  right:300px;
+}
+.table-header {
+  background :mediumpurple;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  display: flex;
+  height:40%;
+}
+
+.table-row {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin: 0;
+}
+
+.table-row .col {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.table-row .col[data-label="Date début et date fin de la demande"] {
+  flex-direction: column;
+}
+
+.motif, .soumetteur, .date, .actions {
+  flex: 1;
+
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: -2px;/* Aligner à droite */
+}
+
+.pagination-tem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+.button-53 {
+  background-image: linear-gradient(to right, #8E2B15, #B4371C, #ff6b9a, #8E2B15);
+  border: 0 solid #E5E7EB;
+  color: #000000;
+  display: flex;
+  font-family: ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 0.50rem; /* Reduced font size */
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1rem; /* Adjusted line-height */
+  padding: 0.25rem 0.5rem; /* Reduced padding */
+  max-width: 200px; /* Reduced max-width */
+  cursor: pointer;
+  transform: rotate(-2deg);
+  margin-bottom: 5px; /* Space between buttons */
+  margin-left: 60px; /* Center the button horizontally */
+  /* Center the button horizontally */
+}
+
+.button-53:focus {
+  outline: 0;
+}
+
+.button-53:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.button-53:hover:after {
+  bottom: 2px;
+  left: 2px;
+
+}
+
+@media (min-width: 768px) {
+  .button-53 {
+    padding: 0.25rem 1rem; /* Adjusted padding for larger screens */
+    font-size: 0.50rem; /* Adjusted font-size for larger screens */
+  }
+}
+
+.button_chat {
+  width:59px /* Center the buttons horizontally */
+}
+
+.dates {
+  margin-left: 2px;
+  font-family: 'Brush Script MT', cursive;
+  font-size: 15px;
+  color: darkred;
+}
+
+.date {
+  margin-left: 0;
+}
+
+

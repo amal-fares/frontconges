@@ -1,0 +1,48 @@
+
+
+
+  <ul  class="amal">
+
+      <li class="table-header">
+
+        <div style="font-family: cursive; color:wheat ; justify-content:center;padding-right:2px;"> A propos des demandes   </div>
+      </li>
+    <li class="table-row"  >
+      <div class="col col-auto motif" data-label="Motif de la demande"></div>
+      <div class="col col-auto soumetteur" data-label="Soumetteur de la demande"><i class="bi bi-exclamation-triangle"></i></div>
+      <div class="col col-auto date "  > <i class="bi bi-clock-history"></i></div>
+    </li>
+    <li class="table-row" >
+      <div class="col col-auto motif  " > </div>
+      <div class="col col-auto urgent ">{{nombretroisprochainsjour}}</div>
+
+      <div class="col col-auto nbr " data-label="Motif de la demande">{{nombrededemandeenretard}}</div>
+    <li class="table-header">
+      <div style="font-family: cursive; color:wheat ; justify-content:center;padding-right:2px;"> Par type de congé    </div>
+    <li class="table-row"  >
+    <li  class="table-row"  >
+      <div   style=" left :0 ; font-family:  Comic Sans MS, Comic Sans, cursive; ; justify-content:left;padding-right:9px;"class="col col-auto motif" data-label="Motif de la demande"> Exceptionnel
+      </div>
+
+
+      <i (click)="toggleTable1()"
+         class="bi bi-arrow-down col col-auto motif"
+         style="cursor: pointer; color: maroon; display: inline-block; justify-content: right; ">
+      </i>
+
+
+  </li>
+    <div *ngIf="isTableVisible1">
+      <p style="margin:0;padding-bottom:5px;height:70px" *ngFor="let value of key; let i = index" >
+
+        <li class="amal " style=" margin : 0 ;  width: 366px;background-color:#fafafa; font-family: Comic Sans MS, Comic Sans, cursive; justify-content:left; padding-right:9px;" data-label="Motif de la demande">
+          {{ key [i]}} : {{ values[i] }}
+        </li>
+
+
+
+      </p>
+    </div>
+
+
+</ul>

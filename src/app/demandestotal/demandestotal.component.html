@@ -1,40 +1,46 @@
-<div class="col-lg-12 grid-margin stretch-card container ">
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Striped Table</h4>
-      <p class="card-description">
-      </p>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th> User </th>
-          <th> Details de la demande   </th>
-          <th> Demandeur de la demande   </th>
-          <th> A traiter avant </th>
-          <th> Actions </th>
+<div class="container " xmlns="http://www.w3.org/1999/html">
+  <ul class="responsive-table column column-70">
+    <li class="table-header">
 
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let demande of listdemandconges">
-          <td class="py-1">
-            <img src="../../assets/images/faces-clipart/pic-1.png" alt="image" />
-          </td>
-          <td> {{demande.date_debut}} </td>
-          <td>
-            <p > {{demande.id_demandeconge}}</p>
+      <div class="col soumetteur2 " style="color: white">Soumetteur </div>
+      <div class="col date " style="color: white">Date début et date fin </div>
+      <div class="col actions" style="color: white">Actions</div>
+    </li>
 
 
-          </td>
-          <td> <p > {{ demande.collaborateur | json }}</p></td>
-          <button  (click)="onDemandeClick(demande.collaborateur.cin,demande.id_demandeconge)"> chat </button>
-          <td> <button (click)="managedecisionn('hhhh',true,demande.id_demandeconge)"> Valider</button> <button (click)="managedecisionn('hhhh',true,demande.id_demandeconge)"> Refuser </button></td>
+    <li class="table-row" *ngFor="let demande of listdemandconges | paginate: { itemsPerPage: 6, currentPage : p }; let i=index"  >
+      <div class="col col-auto motif" data-label="Motif de la demande">{{demande.typecongeexceptionnel}}</div>
+      <div class="col col-auto soumetteur" data-label="Soumetteur de la demande">{{demande.collaborateur.username}}</div>
+      <div class="col col-auto date "  data-label="Date début et date fin de la demande">Date début : {{demande.date_debut}}
+        <div > Date fin : {{demande.date_fin}} </div>
+      <div  class=dates *ngIf="isDeadlineProche(deadlines[demande.id_demandeconge])"> <i class="bi bi-exclamation-octagon-fill"></i> A traiter avant : {{ deadlines[demande.id_demandeconge] | date:'yyyy-MM-dd' }}</div>
+      </div>
+      <div class="col  actions" data-label="Actions">
+        <button class="button-53 button_chat"  (click)="onDemandeClick(demande.collaborateur.cin,demande.id_demandeconge)"> chat </button>
+        <td> <button  class="button-53  button_chat" (click)="managedecisionn('hhhh',true,demande.id_demandeconge)"> Valider</button>
+        <td> <button  class="button-53  button_chat" (click)="managedecisionn('hhhh',false,demande.id_demandeconge)"> Refuser</button>
 
-        </tr>
+          <button class="button-53 button_chat" (click)="toggleDetails(demande.collaborateur.cin, i)">
+            Details de demandes antérieures
+            <i class="fa fa-info-circle"></i>
 
-        </tbody>
-      </table>
-    </div>
-  </div>
+          <span class="info-window" [class.show]="detailsWindowVisible[i]">
+      <div *ngFor="let demandeanterieure of listdemandesanterieres">
+        {{demandeanterieure}}
+      </div>
+    </span>
+          </button>
+      </div>
+
+    </li>
+
+    <div class="pagination-tem"> <pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+
+  </ul>
+
+<app-navbar></app-navbar>
+
+<div class="retard" >
+  <app-sidebargest></app-sidebargest>
 </div>
-
+</div>

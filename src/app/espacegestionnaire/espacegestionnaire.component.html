@@ -1,0 +1,36 @@
+<div class="container " xmlns="http://www.w3.org/1999/html">
+  <ul class="responsive-table column column-70">
+    <li class="table-header">
+      <div class="col motif " style="color:white ">Motif de la demande</div>
+      <div class="col soumetteur2 " style="color: white">Soumetteur </div>
+      <div class="col date " style="color: white">Date début et date fin </div>
+      <div class="col actions" style="color: white">Actions</div>
+    </li>
+
+
+    <li class="table-row" *ngFor="let demande of listdemandconges | paginate: { itemsPerPage: 6, currentPage : p }; let i=index"  >
+      <div class="col col-auto motif" data-label="Motif de la demande">{{demande.typecongeexceptionnel}}</div>
+      <div class="col col-auto soumetteur" data-label="Soumetteur de la demande">{{demande.collaborateur.username}}</div>
+      <div class="col col-auto date "  data-label="Date début et date fin de la demande">Date début : {{demande.date_debut}}
+        <div > Date fin : {{demande.date_fin}} </div>
+        <div  class=dates *ngIf="isDeadlineProche(deadlines[demande.id_demandeconge])"> <i class="bi bi-exclamation-octagon-fill"></i> A traiter avant : {{ deadlines[demande.id_demandeconge] | date:'yyyy-MM-dd' }}</div>
+      </div>
+      <div class="col  actions" data-label="Actions">
+
+             <button (click)="validatedecision()"> Valider le conge</button>
+
+
+      </div>
+
+    </li>
+
+    <div class="pagination-tem"> <pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+
+  </ul>
+
+  <app-navbar></app-navbar>
+
+  <div class="retard" >
+    <app-sidebargest></app-sidebargest>
+  </div>
+</div>

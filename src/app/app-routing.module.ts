@@ -13,6 +13,10 @@ import {TypemotifComponent} from "./typemotif/typemotif.component";
 import {DemandestotalComponent} from "./demandestotal/demandestotal.component";
 import {ValidpremComponent} from "./validprem/validprem.component";
 import {ChatcompoenentComponent} from "./chatcompoenent/chatcompoenent.component";
+import {NavbarComponent} from "./navbar/navbar.component";
+import {NotifComponent} from "./notif/notif.component";
+import {SidebargestComponent} from "./sidebargest/sidebargest.component";
+import {EspacegestionnaireComponent} from "./espacegestionnaire/espacegestionnaire.component";
 
 
 const routes: Routes = [
@@ -23,14 +27,23 @@ const routes: Routes = [
       {path:'totaldem',component:DemandestotalComponent},
       {path:'validprem',component:ValidpremComponent},
       {path:'chat',component:ChatcompoenentComponent},
+      {path:'notif',component:NotifComponent},
+      {path:'sidebar',component:SidebargestComponent},
+      {path:'espacegestionnaire',component:EspacegestionnaireComponent},
+
+      {path:'navbar',component:NavbarComponent},
       {path:'typemotif',component:TypemotifComponent,
-       children:[{path:'calendar',component:CalendarComponent},]},
+       children:[{path:'calendar',component:CalendarComponent},
+         {path:'navbar',component:NavbarComponent},]
+      },
+
 
     ]},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'sendcode',component:SendcodeComponent},
   {path:'resetpassword',component:ResetpasswordComponent},
+
 
 
 
