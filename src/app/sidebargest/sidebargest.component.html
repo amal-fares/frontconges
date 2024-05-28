@@ -1,27 +1,30 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  #333; width:200px; margin-top: -20px; ">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  #333; width:200px;  position:fixed; margin-top: 30px; height:100vw; ">
   <ul class="nav">
-    <li class="nav-item nav-profile">
-      <a href="javascript:;" class="nav-link">
-        <div class="nav-profile-image">
 
 
-        </div>
-        <div class="nav-profile-text">
-          <span  class="font-weight-bold mb-2" style="color:white;" >{{currentUser.prenom}}</span>
-          <span class="text-secondary text-small" style="color:white;">Gestionnaire </span>
+
+        <div class="nav-profile-text"style="position: relative; text-align:center; top: 18px;">
+          <span  class="font-weight-bold mb-2"  style="color:white;top:61px;" >{{currentUser.prenom}}</span>
+          <span class="text-secondary text-small" style="color:white;top:63px;">Gestionnaire </span>
         </div>
 
+
+
+    <li class="nav-item nav-item-logout " [ngClass]="{ 'active': dashboard.isActive }">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
+        <a  routerLink="/home/typemotif/calendar" class="menu-title" style="height:30px; left:1px; margin-top: 40px;color:white;" >Soumettre un congé </a>
+        <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
     <li class="nav-item nav-item-logout " [ngClass]="{ 'active': dashboard.isActive }">
       <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
-        <span class="menu-title" style="height:60px; left:1px; margin-top: 30px;color:white;" >Accueil </span>
+        <span class="menu-title" style="height:30px; left:1px; margin-top: 30px;color:white;" >Accueil </span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
     <li class="nav-item nav-item-logout" [ngClass]="{'active' : accordions.isActive || buttons.isActive || badges.isActive || breadcrumbs.isActive || dropdowns.isActive || modals.isActive || notifications.isActive || progressbar.isActive || pagination.isActive || tabs.isActive || typography.isActive || tooltips.isActive }">
       <a class="nav-link"   aria-controls="ui-basic">
-        <span class="menu-title menu-text-wide " style=" height:60px; color:white;">Mon Espace </span>
+        <a routerLink="/home/espacegestionnaire"  class="menu-title menu-text-wide " style=" height:30px; color:white; margin-top: 30px">Mon Espace </a>
         <i class="menu-arrow"></i>
         <i class="mdi mdi-crosshairs-gps menu-icon"></i>
       </a>
@@ -44,19 +47,19 @@
     </li>
     <li class="nav-item nav-item-logout" [ngClass]="{ 'active': forms.isActive }">
       <a class="nav-link" routerLink="forms/basic-elements" routerLinkActive #forms="routerLinkActive">
-        <span class="menu-title"style="height:60px; color:white;">Documents </span>
+        <span class="menu-title" style="height:30px;margin-top: 30px; color:white;">Documents </span>
         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
       </a>
     </li>
     <li class="nav-item nav-item-logout" [ngClass]="{ 'active': charts.isActive }">
       <a class="nav-link" routerLink="charts/chartjs" routerLinkActive #charts="routerLinkActive">
-        <span class="menu-title" style="height:60px; color:white;">A Propos </span>
+        <span class="menu-title" style="height:30px; margin-top: 30px;color:white;">A Propos </span>
         <i class="mdi mdi-chart-bar menu-icon"></i>
       </a>
     </li>
     <li class="nav-item nav-item-logout" [ngClass]="{ 'active': tables.isActive }">
       <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
-        <span class="menu-title" style="height:60px; color:white;">Déconnexion </span>
+        <span class="menu-title" style="height:30px; margin-top: 30px;color:white;">Déconnexion </span>
         <i class="mdi mdi-table-large menu-icon"></i>
       </a>
     </li>
@@ -65,3 +68,4 @@
 
   </ul>
 </nav>
+

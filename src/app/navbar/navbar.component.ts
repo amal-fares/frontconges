@@ -3,6 +3,8 @@ import {ChatserviceService} from "../chatservice.service";
 import {UserserviceService} from "../userservice/userservice.service";
 import {Personnel} from "../Models/Personnel";
 
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -43,5 +45,6 @@ export class NavbarComponent  implements OnInit{
     this.isTableVisible1 = !this.isTableVisible1;
     this.ChatService.hasNewNotification = false;
   }
+
 
 }

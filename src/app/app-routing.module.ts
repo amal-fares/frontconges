@@ -19,6 +19,7 @@ import {SidebargestComponent} from "./sidebargest/sidebargest.component";
 import {EspacegestionnaireComponent} from "./espacegestionnaire/espacegestionnaire.component";
 
 
+
 const routes: Routes = [
   {path:'home',component:HomepageComponent,
     children: [
@@ -29,12 +30,13 @@ const routes: Routes = [
       {path:'chat',component:ChatcompoenentComponent},
       {path:'notif',component:NotifComponent},
       {path:'sidebar',component:SidebargestComponent},
-      {path:'espacegestionnaire',component:EspacegestionnaireComponent},
 
+      {path:'espacegestionnaire',component:EspacegestionnaireComponent},
       {path:'navbar',component:NavbarComponent},
       {path:'typemotif',component:TypemotifComponent,
        children:[{path:'calendar',component:CalendarComponent},
-         {path:'navbar',component:NavbarComponent},]
+         {path:'navbar',component:NavbarComponent}
+       ]
       },
 
 

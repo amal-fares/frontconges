@@ -23,7 +23,7 @@
   z-index: 11;
   transition: width var(--action-transition-duration) var(--action-transition-timing-function),
   background var(--action-transition-duration) var(--action-transition-timing-function);
-  height: 100%;
+  height: 150vh;
 }
 
 .sidebar .nav {
@@ -33,7 +33,7 @@
 }
 
 .sidebar .nav:not(.sub-menu) {
-  padding-bottom: 60px;
+  padding-bottom: 0px;
 }
 
 .sidebar .nav .nav-item {

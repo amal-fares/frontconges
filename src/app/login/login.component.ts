@@ -72,7 +72,7 @@ console.log(data);
                   });
                   break;
                 }case ERole.Gestionnaire: {
-                  this.router.navigateByUrl("/home/espacegestionnaire").then(() => {
+                  this.router.navigateByUrl("/home/typemotif/calendar").then(() => {
                     window.location.reload();
                   });
                   break;

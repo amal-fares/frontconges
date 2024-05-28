@@ -88,11 +88,18 @@
       </li>
       <li class="nav-item dropdown" ngbDropdown>
         <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" ngbDropdownToggle>
-          <i class="mdi mdi-bell-outline" (click)="toggleTable2()"></i>
+          <i class="mdi mdi-bell-outline" (click)="toggleTable2()"  [ngClass]="{'has-new-notification': ChatService.hasNewNotification}" ></i>
 
         </a>
         <span *ngIf="isTableVisible1" class="dropdown-menu-right">
-            <div  class="data_frame ">hhhh </div>
+            <div  class="data_frame " *ngFor=" let notif of ChatService.notifs">
+              <p *ngIf="currentuser == gestionnaireid">   {{notif.text}}</p>
+            </div>
+           <div  class="data_frame " *ngFor=" let notif of ChatService.notifrefus">
+                 {{notif.text}}
+            </div>
+          <div  class="data_frame " *ngFor=" let notif of ChatService.notifrappel">
+          <p *ngIf="currentuser !== gestionnaireid" > {{notif.text}} </p> </div>
           </span>
         <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" ngbDropdownMenu aria-labelledby="notificationDropdown">
           <h6 class="p-3 mb-0">Notifications</h6>

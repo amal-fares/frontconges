@@ -4,6 +4,7 @@
       <div class="col motif " style="color:white ">Motif de la demande</div>
       <div class="col soumetteur2 " style="color: white">Soumetteur </div>
       <div class="col date " style="color: white">Date début et date fin </div>
+      <div class="col date " style="color: white">Présence de justificatif  </div>
       <div class="col actions" style="color: white">Actions</div>
     </li>
 
@@ -15,13 +16,19 @@
         <div > Date fin : {{demande.date_fin}} </div>
         <div  class=dates *ngIf="isDeadlineProche(deadlines[demande.id_demandeconge])"> <i class="bi bi-exclamation-octagon-fill"></i> A traiter avant : {{ deadlines[demande.id_demandeconge] | date:'yyyy-MM-dd' }}</div>
       </div>
+      <div class="col col-auto date "  data-label="présence justificatif"> {{ verificationResults[demande.id_demandeconge] }}
+
       <div class="col  actions" data-label="Actions">
 
              <button (click)="validatedecision()"> Valider le conge</button>
-
-
+             <button (click)="refuserdemande()"> Refuser le conge</button>
+             <button (click)="toggleDetails(demande.collaborateur.cin,i)"> Verifier les anciennes demandes
+               <i class="fa fa-info-circle"></i>
+        </button> <div class="amal" *ngIf="detailsWindowVisible[i]">
+        <div *ngFor="let jour of detailsByDemand[i]">{{ jour }}</div>
       </div>
-
+      </div>
+      </div>
     </li>
 
     <div class="pagination-tem"> <pagination-controls (pageChange)="p = $event"></pagination-controls></div>
@@ -29,6 +36,8 @@
   </ul>
 
   <app-navbar></app-navbar>
+
+
 
   <div class="retard" >
     <app-sidebargest></app-sidebargest>

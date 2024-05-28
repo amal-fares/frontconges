@@ -13,6 +13,8 @@ export class ChatserviceService {
 
   public messages : any[] = [];
   notifs: { text: string }[] = [];
+  notifrefus: { text: string }[] = [];
+  notifrappel: { text: string }[] = [];
 currentuser: Personnel = new Personnel();
   public stompClient : any;
   public hasNewNotification: boolean = false;
@@ -56,6 +58,13 @@ currentuser: Personnel = new Personnel();
           that.addnotif( );
         }
       });
+      that.stompClient.subscribe("/topic/refus", (message:any) => {
+        if (message.body) {
+
+          that.addnotifrefus();
+        }
+      });
+
 
 
     }, (error: any) => {
@@ -90,7 +99,18 @@ currentuser: Personnel = new Personnel();
       });
     }
   }
-
+  addnotifrefus() {
+    const username = localStorage.getItem("currentUser");
+    if (username) {
+      this.userservice.getUserUsername(username).subscribe(data => {
+        this.currentuser = data;
+        this.notifrefus.push({
+          text: `Votre demande a ete refusé .Veuiller ajouter ou bien modifier votre justficatif `,
+        });
+        this.hasNewNotification = true;
+      });
+    }
+  }
   // Send a chat message using stomp client
   sendMessage(msg: ChatMessage) {
     this.stompClient.send('/app/sendmsg', {}, JSON.stringify(msg));
@@ -107,4 +127,13 @@ currentuser: Personnel = new Personnel();
     this.stompClient.send('/app/notification', {}, JSON.stringify((payload) ));
     console.log ("notif");
   }
+  notifierrefus (message:string,iduser:string ){
+    const payload = {
+      message: message,
+      iduser: iduser
+    };
+    this.stompClient.send('/app/refus', {}, JSON.stringify((payload) ));
+    console.log ("notif");
+  }
+
 }

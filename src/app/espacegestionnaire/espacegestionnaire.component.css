@@ -38,7 +38,7 @@ h2 {
 }
 .retard {
   position: fixed ; /* Position fixe */
-  top: 80px; /* Aligner le haut de l'élément avec le haut de la fenêtre */
+  top: 0px; /* Aligner le haut de l'élément avec le haut de la fenêtre */
   left: 0; /* Coller à la bordure gauche de la fenêtre */
   width: 500px; /* Largeur automatique */
   margin: 0; /* Pas de marge */
@@ -162,10 +162,14 @@ h2 {
   flex: 0 0 30%; /* 30% de largeur */
   margin-left: auto; /* Pour pousser vers la droite */
 }
+.amal.show{
+  background-color: purple ;
+  color: white;
 
-
+}
+.amal{  }
 .info-window {
-  display: none;
+
   position: absolute;
   background-color: white ;
   color: purple;

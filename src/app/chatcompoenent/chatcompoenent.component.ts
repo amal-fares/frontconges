@@ -41,6 +41,7 @@ hattrrom!:Chatroom;
 demande!:Demande_conge;
   fileToUpload!: File | undefined;
   iddemand!:number;
+  Demandconge!:Demande_conge;
   constructor(public sanitizer: DomSanitizer, public userservice:UserserviceService, public Chatservice:ChatserviceService) {
 
 
@@ -153,7 +154,12 @@ console.log(this.iddemand);
         this.sendMsg(data.imagenUrl);
         console.log(this.fileToUpload);
         console.log(this.Image);
-        this.userservice.putetatdemande(this.iddemand);
+        this.userservice.putetatdemande(this.iddemand).subscribe((data:any)=>{
+          this.Demandconge=data;
+          this.userservice.modifieretatdemande(this.iddemand).subscribe((dataa:any)=>{
+            this.Demandconge=dataa;
+          })
+        });
       });
 
     }

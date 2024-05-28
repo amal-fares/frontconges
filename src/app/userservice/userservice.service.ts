@@ -313,6 +313,46 @@ public getbytypecconge(Typeconge:Type_Conge):Observable<any>{
    return this.http.post<any>(`http://localhost:9088/cng/demandeconge/validatedecison`, httpOptions);
 
  }
+ public refuserdemande():Observable<any >{
+   const httpOptions = {
+     headers: new HttpHeaders({
+       'Content-Type': 'application/json',
+       'Authorization': `Bearer ${localStorage.getItem('token')}`
+     })
+   };
+   return this.http.post<any>(`http://localhost:9088/cng/demandeconge/refuserdemande`, httpOptions);
+ }
+  public verifierpresencejustif(iddemand:number):Observable<string>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get(`http://localhost:9088/cng/demandeconge/getjustificatifpresent/${iddemand}`,{responseType:'text'});
+
+  }
+
+  public nombredefoisexc(iduser:number):Observable<any[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.post<any>(`http://localhost:9088/cng/demandeconge/validatebygest/${iduser}`,httpOptions);
+
+  }
+  public mondossiernum(iduser:number):Observable<any[]>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return this.http.get<any>(`http://localhost:9088/cng/demandeconge/getjustifbyidem/${iduser}`,httpOptions);
+
+  }
 }
 
 

@@ -23,4 +23,5 @@ deadline!:Date;
    justificatifs_requis!:boolean;
   chatroom!: Chatroom;
    typecongeexceptionnel!:Type_conge_exceptionnel;
+  justificatifPresent!:boolean;
 }

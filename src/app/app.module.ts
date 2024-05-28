@@ -16,7 +16,7 @@ import {FullCalendarModule} from "@fullcalendar/angular";
 import { CalendarComponent } from './calendar/calendar.component';
 import { TypemotifComponent } from './typemotif/typemotif.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from "@angular/material/dialog";
+import {MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import { ConfirmerComponent } from './confirmer/confirmer.component';
 import { DemandestotalComponent } from './demandestotal/demandestotal.component';
 import { ValidpremComponent } from './validprem/validprem.component';
@@ -30,6 +30,11 @@ import { RetardsComponent } from './retards/retards.component';
 import { NotifComponent } from './notif/notif.component';
 import { SidebargestComponent } from './sidebargest/sidebargest.component';
 import { EspacegestionnaireComponent } from './espacegestionnaire/espacegestionnaire.component';
+import { TimingalertComponent } from './timingalert/timingalert.component';
+import { MondossiernumeriqueComponent } from './mondossiernumerique/mondossiernumerique.component';
+
+
+
 
 
 @NgModule({
@@ -55,6 +60,10 @@ import { EspacegestionnaireComponent } from './espacegestionnaire/espacegestionn
     NotifComponent,
     SidebargestComponent,
     EspacegestionnaireComponent,
+    TimingalertComponent,
+    MondossiernumeriqueComponent,
+
+
 
   ],
   imports: [
@@ -70,7 +79,7 @@ import { EspacegestionnaireComponent } from './espacegestionnaire/espacegestionn
     MatSelectModule,
     NgxPaginationModule
   ],
-  providers: [ChatcompoenentComponent ,DemandestotalComponent],
+  providers: [ChatcompoenentComponent ,DemandestotalComponent,TimingalertComponent,CalendarComponent,TypemotifComponent,EspacegestionnaireComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, NgZone, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, NgZone, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {CalendarOptions, DatesSetArg, EventClickArg, EventContentArg, EventInput} from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -19,6 +19,10 @@ import {Chatroom} from "../Models/Chatroom";
 import {JoindrejustifComponent} from "../joindrejustif/joindrejustif.component";
 import {ChatserviceService} from "../chatservice.service";
 
+import {TimingalertComponent} from "../timingalert/timingalert.component";
+import {EspacegestionnaireComponent} from "../espacegestionnaire/espacegestionnaire.component";
+
+
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -26,6 +30,8 @@ import {ChatserviceService} from "../chatservice.service";
 })
 export class CalendarComponent implements  AfterViewInit {
   @ViewChild('calendar', {static: true}) calendarComponent!: FullCalendarComponent;
+  @ViewChild('Timingalert', {static: true}) alertComponent!: TimingalertComponent ;
+  modalReference!: TimingalertComponent;
   user!: Personnel; // Définissez le type de l'utilisateur en fonction de vos besoins
   token!: string | null;
   demandec!: Demande_conge;
@@ -38,23 +44,44 @@ export class CalendarComponent implements  AfterViewInit {
   idpersonel!: number;
   username!: string|undefined;
   currentuser: Personnel = new Personnel();
-  jsondata!: any;
+  isGestionnaire: boolean = false;
   idpersonnel:number|undefined;
-  constructor(private ngZone: NgZone,public chtacompoenet: ChatcompoenentComponent, private userservice: UserserviceService, private sharedService: SharedserviceService, private typemotif: TypemotifComponent, private dialog: MatDialog ,public chatservice:ChatserviceService) {
+  idgestionnaireee!:number;
+  isReminderModalReady: boolean = false;
+  constructor(public chtacompoenet: ChatcompoenentComponent, private userservice: UserserviceService, private sharedService: SharedserviceService, private typemotif: TypemotifComponent, private dialog: MatDialog ,public chatservice:ChatserviceService,private timingalertComponent: TimingalertComponent) {
     this.subscription = this.sharedService.isSidebarOpen$.subscribe(isOpen => {
       this.isSidebarOpen = isOpen;
+
     });
+
   }
 
   ngAfterViewInit(): void {
+    this.isReminderModalReady = true;
     const username = localStorage.getItem("currentUser");
+
     if (username) {
       this.userservice.getUserUsername(username).subscribe(data => {
         this.currentuser = data;
         console.log(data);
         console.log(this.currentuser.cin);
-        console.log("cingest", this.currentuser.gestionnaire.cin);
-        localStorage.setItem('gestionnaireidd', this.currentuser.gestionnaire.cin.toString());
+
+        if (this.currentuser.roles.some(role => role.name === ERole.Collaborateur)) {
+          localStorage.setItem('gestionnaireidd', this.currentuser.gestionnaire.cin.toString());
+          const gestionaireid = localStorage.getItem("gestionnaireidd");
+          if (gestionaireid) {
+            this.idgestionnaireee=parseInt(gestionaireid);
+          }
+        }
+        console.log("roles",this.currentuser.roles);
+       if  (this.currentuser.roles.some(role => role.name === ERole.Gestionnaire)){
+          console.log("gestionnaire moi ");
+          localStorage.setItem('gestionnaireidd', this.currentuser.cin.toString());
+          const gestionaireid = localStorage.getItem("gestionnaireidd");
+          if (gestionaireid) {
+            this.idgestionnaireee=parseInt(gestionaireid);
+            this.isGestionnaire = this.currentuser.cin === this.idgestionnaireee;
+        }}
       });
 
       const storedEventsString = localStorage.getItem('storedEvents');
@@ -116,8 +143,15 @@ export class CalendarComponent implements  AfterViewInit {
     /////
     const calendarApi = this.calendarComponent.getApi();
     calendarApi.refetchEvents();
+
   }
  /////////
+
+
+
+
+
+  /////
   customEventContent(arg: { event: any; }) {
     const statutConge = arg.event.extendedProps.statut_conge;
 
@@ -372,6 +406,9 @@ this.sendnotif("une demande a ete soumise ")
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+
+
 
 
 }
