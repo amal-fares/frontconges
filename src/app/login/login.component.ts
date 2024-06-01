@@ -61,13 +61,13 @@ console.log(data);
                   break;
                 }
                 case ERole.Manager: {
-                  this.router.navigateByUrl("/home").then(() => {
+                  this.router.navigateByUrl("/home/typemotif/calendar").then(() => {
                     window.location.reload();
                   });
                   break;
                 }
                 case ERole.Manager2: {
-                  this.router.navigateByUrl("/home").then(() => {
+                  this.router.navigateByUrl("/home/typemotif/calendar").then(() => {
                     window.location.reload();
                   });
                   break;

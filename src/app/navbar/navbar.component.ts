@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ChatserviceService} from "../chatservice.service";
 import {UserserviceService} from "../userservice/userservice.service";
 import {Personnel} from "../Models/Personnel";
+import {SharedserviceService} from "../sharedservie/sharedservice.service";
 
 
 
@@ -17,7 +18,7 @@ export class NavbarComponent  implements OnInit{
   gestionnaireid!:number;
   nom!:string|undefined;
   user!:Personnel;
-  constructor(public ChatService :ChatserviceService,public Userservice:UserserviceService){}
+  constructor(public ChatService :ChatserviceService,public Userservice:UserserviceService,public sharedservice:SharedserviceService){}
 
 
 

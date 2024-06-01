@@ -1,4 +1,5 @@
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #333;">
+
   <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="background-color: #333;">
 
   </div>
@@ -12,6 +13,10 @@
           <div class="input-group-prepend bg-transparent">
 
           </div>
+
+        </div>
+        <div class="input-group">
+
 
         </div>
       </form>
@@ -93,7 +98,7 @@
         </a>
         <span *ngIf="isTableVisible1" class="dropdown-menu-right">
             <div  class="data_frame " *ngFor=" let notif of ChatService.notifs">
-              <p *ngIf="currentuser == gestionnaireid">   {{notif.text}}</p>
+              <p *ngIf="sharedservice.isGestionnaire || sharedservice.ismanagerdeux || sharedservice.ismanagerprem">   {{notif.text}}</p>
             </div>
            <div  class="data_frame " *ngFor=" let notif of ChatService.notifrefus">
                  {{notif.text}}
@@ -154,10 +159,14 @@
           <i class="mdi mdi-power"></i>
         </a>
       </li>
+
       <li class="nav-item nav-settings d-none d-lg-block">
         <a class="nav-link">
 
         </a>
+      </li>
+      <li>
+
       </li>
     </ul>
     <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" >

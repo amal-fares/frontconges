@@ -37,7 +37,7 @@ h2 {
 
 }
 .retard {
-  position: fixed ; /* Position fixe */
+  position: relative ; /* Position fixe */
   top: 80px; /* Aligner le haut de l'élément avec le haut de la fenêtre */
   left: 0; /* Coller à la bordure gauche de la fenêtre */
   width: 500px; /* Largeur automatique */

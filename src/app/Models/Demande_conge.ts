@@ -1,4 +1,4 @@
-import {Type_Conge} from "./Type_Conge";
+import {Type_conge} from "./Type_conge";
 
 import {Messags} from "./Messags";
 import {Image_justificatif} from "./Image_justificatif";
@@ -16,7 +16,7 @@ export class Demande_conge {
 deadline!:Date;
   dateDemandeConges!: Date;
   statutconge!: Statut_conge;
-  typeconge!: Type_Conge;
+  typeconge!: Type_conge;
   imagesJustif!: Image_justificatif[];
   collaborateur!: Personnel;
   messDemList!: Messags[];

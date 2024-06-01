@@ -8,8 +8,7 @@ import {Demandcongerequest} from "../Models/Demandcongerequest";
 import {Personnel} from "../Models/Personnel";
 import {Demande_conge} from "../Models/Demande_conge";
 import {TypemotifComponent} from "../typemotif/typemotif.component";
-import {Type_conge_exceptionnel} from "../Models/Type_conge_exceptionnel";
-import {Type_Conge} from "../Models/Type_Conge";
+
 import {SharedserviceService} from "../sharedservie/sharedservice.service";
 import {Subscription} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
@@ -20,7 +19,6 @@ import {JoindrejustifComponent} from "../joindrejustif/joindrejustif.component";
 import {ChatserviceService} from "../chatservice.service";
 
 import {TimingalertComponent} from "../timingalert/timingalert.component";
-import {EspacegestionnaireComponent} from "../espacegestionnaire/espacegestionnaire.component";
 
 
 @Component({
@@ -44,11 +42,13 @@ export class CalendarComponent implements  AfterViewInit {
   idpersonel!: number;
   username!: string|undefined;
   currentuser: Personnel = new Personnel();
-  isGestionnaire: boolean = false;
+
+idmanagerprem!:number;
   idpersonnel:number|undefined;
   idgestionnaireee!:number;
+  idmanager!:number;
   isReminderModalReady: boolean = false;
-  constructor(public chtacompoenet: ChatcompoenentComponent, private userservice: UserserviceService, private sharedService: SharedserviceService, private typemotif: TypemotifComponent, private dialog: MatDialog ,public chatservice:ChatserviceService,private timingalertComponent: TimingalertComponent) {
+  constructor(public chtacompoenet: ChatcompoenentComponent, private userservice: UserserviceService, public sharedService: SharedserviceService, private typemotif: TypemotifComponent, private dialog: MatDialog ,public chatservice:ChatserviceService,private timingalertComponent: TimingalertComponent) {
     this.subscription = this.sharedService.isSidebarOpen$.subscribe(isOpen => {
       this.isSidebarOpen = isOpen;
 
@@ -71,6 +71,7 @@ export class CalendarComponent implements  AfterViewInit {
           const gestionaireid = localStorage.getItem("gestionnaireidd");
           if (gestionaireid) {
             this.idgestionnaireee=parseInt(gestionaireid);
+
           }
         }
         console.log("roles",this.currentuser.roles);
@@ -80,8 +81,28 @@ export class CalendarComponent implements  AfterViewInit {
           const gestionaireid = localStorage.getItem("gestionnaireidd");
           if (gestionaireid) {
             this.idgestionnaireee=parseInt(gestionaireid);
-            this.isGestionnaire = this.currentuser.cin === this.idgestionnaireee;
+            this.sharedService.isGestionnaire = this.currentuser.cin === this.idgestionnaireee;
         }}
+        if  (this.currentuser.roles.some(role => role.name === ERole.Manager)){
+          console.log("manager premeir  moi ");
+          localStorage.setItem('managerpremier', this.currentuser.cin.toString());
+          localStorage.setItem('gestionnaireidd', this.currentuser.gestionnaire.cin.toString());
+          const manageridprem = localStorage.getItem("managerpremier");
+          if (manageridprem) {
+            this.idmanagerprem=parseInt(manageridprem);
+            this.sharedService.ismanagerprem = this.currentuser.cin === this.idmanagerprem;
+          }}
+        if  (this.currentuser.roles.some(role => role.name === ERole.Manager2)){
+          console.log("maanger moi ");
+          localStorage.setItem('managerdeuxidd', this.currentuser.cin.toString());
+          localStorage.setItem('gestionnaireidd', this.currentuser.gestionnaire.cin.toString());
+          const managerid = localStorage.getItem("managerdeuxidd");
+          if (managerid) {
+            this.idmanager=parseInt(managerid);
+
+            this.sharedService.ismanagerdeux = this.currentuser.cin === this.idmanager;
+            console.log("jesuis manager deux",this.sharedService.ismanagerdeux);
+          }}
       });
 
       const storedEventsString = localStorage.getItem('storedEvents');
@@ -218,7 +239,7 @@ console.log("element",element.innerText)
   customizeTitle = (info: DatesSetArg) => {
     const titleEl = document.querySelector('.fc-toolbar-title') as HTMLElement;
     if (titleEl) {
-      titleEl.style.fontFamily = 'Algerian'; // Changer la police du titre du calendrier
+      titleEl.style.fontFamily = 'Apple Chancery, cursive'; // Changer la police du titre du calendrier
       // Autres styles CSS que vous souhaitez appliquer au titre du calendrier
       titleEl.innerHTML = info.view.title;
       titleEl.style.textAlign = 'center';

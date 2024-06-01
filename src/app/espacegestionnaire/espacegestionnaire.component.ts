@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {UserserviceService} from "../userservice/userservice.service";
-import {Type_Conge} from "../Models/Type_Conge";
+import {Type_conge} from "../Models/Type_conge";
 import {Demande_conge} from "../Models/Demande_conge";
 import {SharedserviceService} from "../sharedservie/sharedservice.service";
 import {Observable} from "rxjs";
@@ -9,6 +9,10 @@ import {CalendarComponent} from "../calendar/calendar.component";
 import {TimingalertComponent} from "../timingalert/timingalert.component";
 import {ChatserviceService} from "../chatservice.service";
 import {Personnel} from "../Models/Personnel";
+import {MondossiernumeriqueComponent} from "../mondossiernumerique/mondossiernumerique.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Image_justificatif} from "../Models/Image_justificatif";
+import {ImagejustifgestComponent} from "../imagejustifgest/imagejustifgest.component";
 
 @Component({
   selector: 'app-espacegestionnaire',
@@ -18,23 +22,25 @@ import {Personnel} from "../Models/Personnel";
 export class EspacegestionnaireComponent implements AfterViewInit {
 
 
-  listdemandconges!:Demande_conge[];
+  listdemandconges!: Demande_conge[];
 
   deadlines: { [key: number]: Date } = {};
   p: number = 1;
   visible: boolean = false;
-  Demande_conge!:Demande_conge;
-  Demande!:Demande_conge;
-  listnombrejours!:number[];
+  Demande_conge!: Demande_conge;
+  Demande!: Demande_conge;
+  listnombrejours!: number[];
   verificationResults: { [key: number]: string } = {};
-  currentuser!:Personnel;
+  currentuser!: Personnel;
   detailsWindowVisible: boolean[] = [];
   infosConges: { iduser: number, nombreJours: number[] }[] = [];
   isTableVisible1: boolean = false;
-  idpersonnel!:number;
-  constructor(private Userservice:UserserviceService,public sharedservice:SharedserviceService,public Chatservice:ChatserviceService){
+  idpersonnel!: number;
+
+  constructor(private Userservice: UserserviceService, public sharedservice: SharedserviceService, public Chatservice: ChatserviceService, public dialog: MatDialog) {
 
   }
+
   ngAfterViewInit(): void {
     const username = localStorage.getItem("currentUser");
 
@@ -47,7 +53,7 @@ export class EspacegestionnaireComponent implements AfterViewInit {
 
       });
 
-      this.Userservice.gettypecongesexep(Type_Conge.exceptionnel).subscribe({
+      this.Userservice.gettypecongesexep(Type_conge.exceptionnel).subscribe({
         next: (data: any) => {
           this.listdemandconges = data;
           console.log(this.listdemandconges);
@@ -66,6 +72,7 @@ export class EspacegestionnaireComponent implements AfterViewInit {
       });
     }
   }
+
   openCalendarDialog() {
     // Ouvrir la boîte de dialogue dans le composant enfant
 
@@ -77,42 +84,72 @@ export class EspacegestionnaireComponent implements AfterViewInit {
     const troisJoursPlusTard = new Date(AUJOURDHUI.getTime() + (3 * 24 * 60 * 60 * 1000)); // Calcul de la date dans 3 jours
 
     // Vérifier si la date de la deadline est dans les 3 jours à venir
-    if( limite.getTime() <= troisJoursPlusTard.getTime()&& limite.getTime() >= AUJOURDHUI.getTime()){
-      return true ;
+    if (limite.getTime() <= troisJoursPlusTard.getTime() && limite.getTime() >= AUJOURDHUI.getTime()) {
+      return true;
       this.sharedservice.nombreDemandesTroisProchainsJours++;
 
     }
-    return false ;
+    return false;
   }
-  public validatedecision(){
-    this.Userservice.validatedecision().subscribe(data=>{
-      this.Demande_conge=data;
+
+  public validatedecision() {
+    this.Userservice.validatedecision().subscribe(data => {
+      this.Demande_conge = data;
     })
   }
-  public refuserdemande(){
-    this.Userservice.refuserdemande().subscribe(data=>{
-      this.Demande=data;
+
+  public refuserdemande() {
+    this.Userservice.refuserdemande().subscribe(data => {
+      this.Demande = data;
       this.sendnotif("Votre demande de conge exceptionnel  est refusée .Veuillez soit joindre un justificatif soit modifier le justificatif que vous avez fourni ")
     })
   }
+
   detailsByDemand: { [key: number]: any[] } = {};
-public nbrfoisexcepp(iduser:number,index:number ){
-    return this.Userservice.nombredefoisexc(iduser).subscribe((jours: any[])=>{
+
+  public nbrfoisexcepp(iduser: number, index: number) {
+    return this.Userservice.nombredefoisexc(iduser).subscribe((jours: any[]) => {
       this.detailsByDemand[index] = jours
-console.log(this.detailsByDemand[index]);
+      console.log(this.detailsByDemand[index]);
     });
-}
-  sendnotif(message:string) {
+  }
+
+  sendnotif(message: string) {
     const iduser2 = localStorage.getItem('iduser');
-    if(iduser2){
+    if (iduser2) {
       this.idpersonnel = parseInt(iduser2);
 
 
-      this.Chatservice.notifierrefus(message,iduser2);
+      this.Chatservice.notifierrefus(message, iduser2);
       console.log(this.Chatservice.notifrefus);
-    }}
-  toggleDetails(iduser:number,index:number): void {
-console.log(this.isTableVisible1);
-    this.nbrfoisexcepp(iduser,index);
+    }
+  }
+
+  toggleDetails(iduser: number, index: number): void {
+    console.log(this.isTableVisible1);
+    this.nbrfoisexcepp(iduser, index);
     this.detailsWindowVisible = this.detailsWindowVisible.map((_, i) => i === index ? !this.detailsWindowVisible[i] : false);
-}}
+  }
+
+  openmatdialog() {
+    const dialogRef = this.dialog.open(MondossiernumeriqueComponent, {
+      width: '650px',
+      height: '600px'
+
+    });
+
+
+  }
+  openImageDialog(images: Image_justificatif[]): void {
+    this.dialog.open(ImagejustifgestComponent, {
+      width: '600px',
+      data: { images }
+    });}
+  listimagebydem!:Image_justificatif[];
+public getimagebydem(iddem:number){
+    this.Userservice.getiamgebydem(iddem).subscribe((data:any)=>{
+      this.listimagebydem=data;
+      this.openImageDialog(data);
+    })
+}
+}

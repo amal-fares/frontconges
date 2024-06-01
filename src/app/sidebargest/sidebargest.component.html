@@ -1,71 +1,54 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  #333; width:200px;  position:fixed; margin-top: 30px; height:100vw; ">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color:  #333; width:200px;  position:fixed; margin-top: 40px; height:120vw; ">
+ <img src="../../assets/soopra.png" style="margin-top:19px; margin-left:30px;width:120px; height:120px;">
   <ul class="nav">
 
 
 
-        <div class="nav-profile-text"style="position: relative; text-align:center; top: 18px;">
-          <span  class="font-weight-bold mb-2"  style="color:white;top:61px;" >{{currentUser.prenom}}</span>
-          <span class="text-secondary text-small" style="color:white;top:63px;">Gestionnaire </span>
-        </div>
 
 
 
-    <li class="nav-item nav-item-logout " [ngClass]="{ 'active': dashboard.isActive }">
-      <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
-        <a  routerLink="/home/typemotif/calendar" class="menu-title" style="height:30px; left:1px; margin-top: 40px;color:white;" >Soumettre un congé </a>
+    <li class="nav-item nav-item-logout ">
+      <a class="nav-link" >
+        <span (click)="gosoumettre()" class="menu-title" style="height:30px; left:1px; margin-top: 40px;color:white;" >Soumettre un congé </span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item nav-item-logout " [ngClass]="{ 'active': dashboard.isActive }">
-      <a class="nav-link" routerLink="/dashboard" routerLinkActive #dashboard="routerLinkActive">
-        <span class="menu-title" style="height:30px; left:1px; margin-top: 30px;color:white;" >Accueil </span>
+    <li class="nav-item nav-item-logout " >
+      <a class="nav-link" >
+        <span (click)="gochart()" class="menu-title" style="height:30px; left:1px; margin-top: 30px;color:white;" >Charts </span>
         <i class="mdi mdi-home menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item nav-item-logout" [ngClass]="{'active' : accordions.isActive || buttons.isActive || badges.isActive || breadcrumbs.isActive || dropdowns.isActive || modals.isActive || notifications.isActive || progressbar.isActive || pagination.isActive || tabs.isActive || typography.isActive || tooltips.isActive }">
-      <a class="nav-link"   aria-controls="ui-basic">
-        <a routerLink="/home/espacegestionnaire"  class="menu-title menu-text-wide " style=" height:30px; color:white; margin-top: 30px">Mon Espace </a>
-        <i class="menu-arrow"></i>
-        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+    <li class="nav-item nav-item-logout " >
+      <a class="nav-link" >
+        <span class="menu-title"  (click)="goplanning()" style="height:30px; left:1px; margin-top: 30px;color:white;" >Le planning de mes collégues </span>
+        <i class="mdi mdi-home menu-icon"></i>
       </a>
-      <div class="collapse" id="ui-basic" >
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/accordions" routerLinkActive="active" #accordions="routerLinkActive">Accordions</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/buttons" routerLinkActive="active" #buttons="routerLinkActive">Buttons</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/badges" routerLinkActive="active" #badges="routerLinkActive">Badges</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/breadcrumbs" routerLinkActive="active" #breadcrumbs="routerLinkActive">Breadcrumbs</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/dropdowns" routerLinkActive="active" #dropdowns="routerLinkActive">Dropdowns</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/modals" routerLinkActive="active" #modals="routerLinkActive">Modals</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/notifications" routerLinkActive="active" #notifications="routerLinkActive">Notifications</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/progressbar" routerLinkActive="active" #progressbar="routerLinkActive">Progress bar</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/pagination" routerLinkActive="active" #pagination="routerLinkActive">Pagination</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tabs" routerLinkActive="active" #tabs="routerLinkActive">Tabs</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/typography" routerLinkActive="active" #typography="routerLinkActive">Typography</a></li>
-          <li class="nav-item"> <a class="nav-link" routerLink="basic-ui/tooltips" routerLinkActive="active" #tooltips="routerLinkActive">Tooltips</a></li>
-        </ul>
-      </div>
     </li>
-    <li class="nav-item nav-item-logout" [ngClass]="{ 'active': forms.isActive }">
-      <a class="nav-link" routerLink="forms/basic-elements" routerLinkActive #forms="routerLinkActive">
-        <span class="menu-title" style="height:30px;margin-top: 30px; color:white;">Documents </span>
+  -
+    <li class="nav-item nav-item-logout" >
+      <a class="nav-link" >
+        <span (click)="openmatdialog()" class="menu-title" style="height:30px;margin-top: 30px; color:white;">Documents </span>
         <i class="mdi mdi-format-list-bulleted menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item nav-item-logout" [ngClass]="{ 'active': charts.isActive }">
-      <a class="nav-link" routerLink="charts/chartjs" routerLinkActive #charts="routerLinkActive">
-        <span class="menu-title" style="height:30px; margin-top: 30px;color:white;">A Propos </span>
+    <li class="nav-item nav-item-logout" >
+      <a class="nav-link" >
+        <span (click)="decider()" class="menu-title" style="height:30px;margin-top: 30px; color:white;">Mon espace  </span>
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+      </a>
+    </li>
+    <li class="nav-item nav-item-logout"  >
+      <a class="nav-link" >
+        <span (click)="goto()"  style="height:30px; margin-top: 30px;color:white;">A Propos </span>
         <i class="mdi mdi-chart-bar menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item nav-item-logout" [ngClass]="{ 'active': tables.isActive }">
-      <a class="nav-link" routerLink="tables/basic-table" routerLinkActive #tables="routerLinkActive">
-        <span class="menu-title" style="height:30px; margin-top: 30px;color:white;">Déconnexion </span>
-        <i class="mdi mdi-table-large menu-icon"></i>
-      </a>
-    </li>
+
 
 
 
   </ul>
+
 </nav>
 

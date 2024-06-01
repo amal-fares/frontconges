@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserserviceService} from "../userservice/userservice.service";
 import {SharedserviceService} from "../sharedservie/sharedservice.service";
 import {DemandestotalComponent} from "../demandestotal/demandestotal.component";
-import {Type_Conge} from "../Models/Type_Conge";
+import {Type_conge} from "../Models/Type_conge";
 import {Type_conge_exceptionnel} from "../Models/Type_conge_exceptionnel";
 
 @Component({
@@ -35,7 +35,7 @@ export class RetardsComponent implements OnInit{
       this.nombretroisprochainsjour=nbrtrois;
       console.log("trois", this.nombretroisprochainsjour);
     })
-    this.Userservice.getbytypecconge(Type_Conge.regulier).subscribe((data:any)=>{
+    this.Userservice.getbytypecconge(Type_conge.regulier).subscribe((data:any)=>{
       this.nombreregulier=data;
     })
 

@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Images Justificatives</h1>
+<div mat-dialog-content>
+  <div *ngFor="let image of data.images" class="image-container">
+    <img [src]="image.imagenUrl" alt="Justificatif" style="width: 100%; height: auto;">
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Fermer</button>
+</div>

@@ -1,0 +1,30 @@
+.retard {
+  position: fixed ; /* Position fixe */
+  top: 20px; /* Aligner le haut de l'élément avec le haut de la fenêtre */
+  left: 0; /* Coller à la bordure gauche de la fenêtre */
+  width: 500px; /* Largeur automatique */
+  margin: 0; /* Pas de marge */
+  padding: 0; /* Pas de remplissage */
+  list-style: none; /* Supprimer les puces de liste */
+  height:100%;
+}
+
+.charts-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 100px;
+  width: 100%; /* Ensure it takes full width of the parent container */
+}
+
+.chart-wrapper {
+  width: 45%; /* Adjust this width as needed */
+  height: 60vh; /* Adjust this height as needed */
+  margin-left: 20px; /* Add some margin if needed */
+  margin-right: 20px; /* Add some margin if needed */
+}
+
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

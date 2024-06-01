@@ -1,0 +1,35 @@
+<div class="container rounded bg-white " style=" height:650px;margin-top:130px;margin-left:350px;left:250px; width:60%;right:0px;">
+  <div class="row">
+    <div class="col-md-3 border-right"  >
+      <div class="d-flex flex-column align-items-center text-center p-3 py-5" style="margin-top:50px;"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">{{currentuser.prenom}}</span></div>
+    </div>
+    <div class="col-md-5 border-right">
+      <div class="p-3 py-5" >
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="text-right" style="margin:15px;font-family: Lucida Console;">Profile Settings</h4>
+        </div>
+        <div class="row mt-2">
+          <div class="col-md-6"><label class="labels" style="color: #757a79; font-size: 1rem; font-family: Fantasy; margin:15px;">Name</label><p style=" margin:10px;"> {{currentuser.username}}</div>
+          <div class="col-md-6"><label class="labels" style="color:#757a79; font-size: 1rem; font-family: Fantasy; margin:15px;" >Surname</label><p style=" margin:10px;" >{{currentuser.prenom}}</div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-12"><label class="labels" style="color: #757a79; font-size: 1rem;font-family: Fantasy;margin-right: 10px; margin:15px; ">Mobile Number : </label>{{currentuser.tel}}</div>
+
+
+
+          <div class="col-md-12"><label class="labels" style="color: #757a79; font-size: 1rem;font-family: Fantasy;margin-right: 10px; margin:15px;">Email </label>{{currentuser.email}}</div>
+          <div class="col-md-12"><label class="labels" style="color: #757a79; font-size: 1rem;font-family: Fantasy; margin-right: 10px; margin:15px;">Gestionnaire  </label>{{currentuser.gestionnaire.prenom}}</div>
+          <div class="col-md-12"><label  *ngIf="sharedservice.ismanagerprem" class="labels" style="color: #757a79; font-size: 1rem; font-family: Fantasy; margin-right: 10px; margin:15px;">Manager  n+1  </label>{{currentuser.manager.prenom}}</div>
+          <div class="col-md-12"><label  *ngIf="!sharedservice.ismanagerdeux"class="labels"style="color: #A5A4A4; font-size: 1rem; font-family: Fantasy; margin-right: 10px; margin:15px;">Manager  n+2   </label>{{currentuser.prenom}}</div>
+        </div>
+
+
+        </div>
+    </div>
+    </div>
+  </div>
+
+<app-navbar></app-navbar>
+<div class="retard">
+<app-sidebargest></app-sidebargest>
+</div>

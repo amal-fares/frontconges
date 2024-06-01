@@ -7,7 +7,7 @@ import {ChatcompoenentComponent} from "../chatcompoenent/chatcompoenent.componen
 import {MatDialog} from "@angular/material/dialog";
 import {Personnel} from "../Models/Personnel";
 import {SharedserviceService} from "../sharedservie/sharedservice.service";
-import {Type_Conge} from "../Models/Type_Conge";
+import {Type_conge} from "../Models/Type_conge";
 
 @Component({
   selector: 'app-demandestotal',
@@ -45,10 +45,10 @@ export class DemandestotalComponent  implements OnInit {
     console.log("gestionnaire", this.currentuser.gestionnaire.cin);
       });
 
-      this.Userservice.gettypecongesexep(Type_Conge.regulier).subscribe({
+      this.Userservice.listedemprem(Type_conge.regulier).subscribe({
       next: (data: any) => {
         this.listdemandconges = data;
-        console.log(this.listdemandconges); // Déplacer ici
+        console.log(this.listdemandconges);
         this.detailsWindowVisible = new Array(this.listdemandconges.length).fill(false);
 
         this.listdemandconges.forEach(demande => {
@@ -166,6 +166,6 @@ detailsdemandes(iduser:any){
     this.detailsdemandes(iduser);
     this.detailsWindowVisible = this.detailsWindowVisible.map((_, i) => i === index ? !this.detailsWindowVisible[i] : false);
   }
-  protected readonly Type_Conge = Type_Conge;
+  protected readonly Type_Conge = Type_conge;
 }
 

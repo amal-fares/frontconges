@@ -2,29 +2,30 @@
   <ul class="responsive-table column column-70">
     <li class="table-header">
       <div class="col motif " style="color:white ">Motif de la demande</div>
-      <div class="col soumetteur2 " style="color: white">Soumetteur </div>
-      <div class="col date " style="color: white">Date début et date fin </div>
-      <div class="col date " style="color: white">Présence de justificatif  </div>
-      <div class="col actions" style="color: white">Actions</div>
+      <div class="col soumetteur2 " style="color: white ;margin-left:20px">Soumetteur </div>
+      <div class="col date " style="color: white ;margin-left:-40px;">Date début et date fin </div>
+      <div class="col date " style="color: white ;margin-left:50px;">Présence de justificatif  </div>
+      <div class="col actions" style="color: white ;margin-right: 0px;">Actions</div>
     </li>
 
 
     <li class="table-row" *ngFor="let demande of listdemandconges | paginate: { itemsPerPage: 6, currentPage : p }; let i=index"  >
       <div class="col col-auto motif" data-label="Motif de la demande">{{demande.typecongeexceptionnel}}</div>
-      <div class="col col-auto soumetteur" data-label="Soumetteur de la demande">{{demande.collaborateur.username}}</div>
-      <div class="col col-auto date "  data-label="Date début et date fin de la demande">Date début : {{demande.date_debut}}
+      <div class="col  soumetteur"  style="margin-left:-100px"data-label="Soumetteur de la demande">{{demande.collaborateur.prenom}}</div>
+      <div class="col   " style="margin-left:-220px; margin-top: 100px;"  data-label="Date début et date fin de la demande">Date début : {{demande.date_debut}}
         <div > Date fin : {{demande.date_fin}} </div>
         <div  class=dates *ngIf="isDeadlineProche(deadlines[demande.id_demandeconge])"> <i class="bi bi-exclamation-octagon-fill"></i> A traiter avant : {{ deadlines[demande.id_demandeconge] | date:'yyyy-MM-dd' }}</div>
       </div>
       <div class="col col-auto date "  data-label="présence justificatif"> {{ verificationResults[demande.id_demandeconge] }}
 
-      <div class="col  actions" data-label="Actions">
+      <div class="col  actions " style="margin-left:160px;" data-label="Actions">
 
-             <button (click)="validatedecision()"> Valider le conge</button>
-             <button (click)="refuserdemande()"> Refuser le conge</button>
-             <button (click)="toggleDetails(demande.collaborateur.cin,i)"> Verifier les anciennes demandes
+             <button  class="button-53  button_chat" (click)="validatedecision()"> Valider le conge</button>
+             <button  class="button-53  button_chat"(click)="refuserdemande()"> Refuser le conge</button>
+<button   class="button-53  button_chat" (click)="getimagebydem(demande.id_demandeconge)"> afficher justif </button>
+             <button   class="button-53  button_chat"(click)="toggleDetails(demande.collaborateur.cin,i)"> Verifier les anciennes demandes
                <i class="fa fa-info-circle"></i>
-        </button> <div class="amal" *ngIf="detailsWindowVisible[i]">
+        </button> <div class="data-frame" *ngIf="detailsWindowVisible[i]">
         <div *ngFor="let jour of detailsByDemand[i]">{{ jour }}</div>
       </div>
       </div>

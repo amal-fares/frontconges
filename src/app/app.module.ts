@@ -32,8 +32,22 @@ import { SidebargestComponent } from './sidebargest/sidebargest.component';
 import { EspacegestionnaireComponent } from './espacegestionnaire/espacegestionnaire.component';
 import { TimingalertComponent } from './timingalert/timingalert.component';
 import { MondossiernumeriqueComponent } from './mondossiernumerique/mondossiernumerique.component';
+import { ImagejustifgestComponent } from './imagejustifgest/imagejustifgest.component';
+import { DemmanagerdeuxComponent } from './demmanagerdeux/demmanagerdeux.component';
+import { DetailsuserComponent } from './detailsuser/detailsuser.component';
 
 
+import { PlanningComponent } from './planning/planning.component';
+
+
+
+import timeGridPlugin from '@fullcalendar/timegrid';
+import resourceTimeGridPlugin from '@fullcalendar/resource-timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import { CharttopvalidationComponent } from './charttopvalidation/charttopvalidation.component';
+import { PiechartComponent } from './piechart/piechart.component';
+import { SognutchartComponent } from './sognutchart/sognutchart.component';
+import { PolarareaComponent } from './polararea/polararea.component';
 
 
 
@@ -62,6 +76,15 @@ import { MondossiernumeriqueComponent } from './mondossiernumerique/mondossiernu
     EspacegestionnaireComponent,
     TimingalertComponent,
     MondossiernumeriqueComponent,
+    ImagejustifgestComponent,
+    DemmanagerdeuxComponent,
+    DetailsuserComponent,
+    PlanningComponent,
+    CharttopvalidationComponent,
+    PiechartComponent,
+    SognutchartComponent,
+    PolarareaComponent,
+
 
 
 
@@ -77,9 +100,11 @@ import { MondossiernumeriqueComponent } from './mondossiernumerique/mondossiernu
     MatSidenavModule,
     MatFormFieldModule,
     MatSelectModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
   ],
   providers: [ChatcompoenentComponent ,DemandestotalComponent,TimingalertComponent,CalendarComponent,TypemotifComponent,EspacegestionnaireComponent],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

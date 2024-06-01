@@ -1,0 +1,41 @@
+.hidden {
+  display: none;
+}
+
+.non-empty-slot {
+  height:300px;
+}
+.container{
+
+  height: 90%;
+  width:80%;
+
+}
+.retard {
+  position: fixed ; /* Position fixe */
+  top: 0px; /* Aligner le haut de l'élément avec le haut de la fenêtre */
+  left: 0; /* Coller à la bordure gauche de la fenêtre */
+  width: 500px; /* Largeur automatique */
+  margin: 0; /* Pas de marge */
+  padding: 0; /* Pas de remplissage */
+  list-style: none; /* Supprimer les puces de liste */
+  height:100%;
+}
+
+.fc-timegrid-axis
+{
+  width:500px;
+}
+.fc-day {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+
+}
+.fc-day-top {
+  font-family: Arial, sans-serif;
+  color: #333; /* Noir */
+}
+.fc .fc-col-header-cell .fc-scrollgrid-sync-inner {
+  font-family: 'Apple Chancery', cursive !important; /* Change la police des jours de la semaine */
+  color: red !important; /* Change la couleur du texte des jours de la semaine */
+}

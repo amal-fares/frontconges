@@ -17,6 +17,15 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {NotifComponent} from "./notif/notif.component";
 import {SidebargestComponent} from "./sidebargest/sidebargest.component";
 import {EspacegestionnaireComponent} from "./espacegestionnaire/espacegestionnaire.component";
+import {MondossiernumeriqueComponent} from "./mondossiernumerique/mondossiernumerique.component";
+import {DemmanagerdeuxComponent} from "./demmanagerdeux/demmanagerdeux.component";
+import {DetailsuserComponent} from "./detailsuser/detailsuser.component";
+import {PlanningComponent} from "./planning/planning.component";
+import {CharttopvalidationComponent} from "./charttopvalidation/charttopvalidation.component";
+import {PiechartComponent} from "./piechart/piechart.component";
+import {SognutchartComponent} from "./sognutchart/sognutchart.component";
+import {PolarareaComponent} from "./polararea/polararea.component";
+
 
 
 
@@ -30,6 +39,15 @@ const routes: Routes = [
       {path:'chat',component:ChatcompoenentComponent},
       {path:'notif',component:NotifComponent},
       {path:'sidebar',component:SidebargestComponent},
+      {path:'dossier',component:MondossiernumeriqueComponent},
+      {path:'demanmanager',component:DemmanagerdeuxComponent},
+      {path:'detailsuser',component:DetailsuserComponent},
+      {path:'planning',component:PlanningComponent},
+      {path:'chart',component:CharttopvalidationComponent},
+      {path:'piechart',component:PiechartComponent},
+      {path:'polararea',component:PolarareaComponent},
+
+
 
       {path:'espacegestionnaire',component:EspacegestionnaireComponent},
       {path:'navbar',component:NavbarComponent},

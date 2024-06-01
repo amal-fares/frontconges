@@ -35,7 +35,12 @@
 .sidebar .nav:not(.sub-menu) {
   padding-bottom: 0px;
 }
-
+.hidden {
+  visibility: hidden;
+  height: 0;
+  margin-top: 0;
+  position: absolute;
+}
 .sidebar .nav .nav-item {
   padding: 0 var(--sidebar-menu-padding-x);
   transition-duration: 0.25s;
